@@ -2757,71 +2757,168 @@
             font-size: 1em;
         }
 
+        /* ===== Intro banner alur kerja ===== */
+        .rap-flow-intro {
+            background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 12px;
+        }
+        .rap-flow-intro-title {
+            font-size: 0.78em;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .rap-flow-intro-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 6px;
+            font-size: 0.66em;
+            color: #334155;
+        }
+        .rap-flow-intro-steps span.num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #1d4ed8;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-right: 3px;
+        }
+        .rap-flow-intro-steps .sep {
+            color: #94a3b8;
+            margin: 0 2px;
+        }
+
+        /* ===== Step Indicator (progress alur 3 langkah) ===== */
         .step-indicator {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 0;
+            margin-bottom: 14px;
+            flex-wrap: nowrap;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .step {
             display: flex;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
             gap: 4px;
-            color: #718096;
+            color: #94a3b8;
             font-weight: 600;
-            font-size: 0.6em;
-            background: #e2e8f0;
-            padding: 3px 8px 3px 6px;
-            border-radius: 20px;
+            font-size: 0.68em;
+            background: transparent;
+            padding: 0 4px;
+            border-radius: 0;
             transition: all 0.3s ease;
+            flex: 1 1 0;
+            min-width: 0;
         }
 
         .step .step-num {
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            background: #cbd5e1;
-            color: #4a5568;
+            background: #e2e8f0;
+            color: #94a3b8;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.6em;
+            font-size: 0.9em;
             flex-shrink: 0;
+            border: 2px solid #e2e8f0;
             transition: all 0.3s ease;
         }
 
-        .step.active {
-            color: #fff;
-            background: #2d3748;
+        .step .step-label {
+            font-size: 1em;
+            font-weight: 700;
+            color: #64748b;
         }
+
+        .step .step-desc {
+            font-size: 0.85em;
+            font-weight: 400;
+            color: #94a3b8;
+            line-height: 1.2;
+        }
+
         .step.active .step-num {
             background: #1d4ed8;
             color: #fff;
+            border-color: #1d4ed8;
+            box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.15);
+        }
+        .step.active .step-label {
+            color: #1d4ed8;
+        }
+        .step.active .step-desc {
+            color: #1d4ed8;
         }
 
-        .step.completed {
-            color: #1e7a46;
-            background: #d4edda;
-        }
         .step.completed .step-num {
             background: #1e7a46;
             color: #fff;
+            border-color: #1e7a46;
+        }
+        .step.completed .step-num::after {
+            content: "✓";
+        }
+        .step.completed .step-label {
+            color: #1e7a46;
         }
 
         .step-line {
-            width: 18px;
+            flex: 0 0 auto;
+            width: 36px;
             height: 2px;
             background: #cbd5e1;
-            flex-shrink: 0;
+            margin-top: 14px;
             border-radius: 2px;
             transition: background 0.4s ease;
         }
         .step-line.completed {
             background: #1e7a46;
+        }
+
+        /* Petunjuk kecil "berikutnya" di bawah judul kartu step aktif */
+        .rap-step-hint {
+            font-size: 0.66em;
+            color: #1e3a8a;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            padding: 5px 8px;
+            margin: -2px 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .rap-step-badge {
+            display: inline-block;
+            font-size: 0.6em;
+            font-weight: 700;
+            color: #fff;
+            background: #1d4ed8;
+            padding: 2px 7px;
+            border-radius: 10px;
+            margin-right: 6px;
+            white-space: nowrap;
         }
 
         .upload-row {
@@ -3315,16 +3412,23 @@
             }
 
             .step {
-                font-size: 0.5em;
-                padding: 2px 6px 2px 4px;
+                font-size: 0.58em;
+                padding: 0 2px;
             }
             .step .step-num {
-                width: 16px;
-                height: 16px;
-                font-size: 0.5em;
+                width: 24px;
+                height: 24px;
+                font-size: 0.85em;
+            }
+            .step .step-desc {
+                display: none;
             }
             .step-line {
-                width: 12px;
+                width: 16px;
+                margin-top: 12px;
+            }
+            .rap-flow-intro-steps {
+                font-size: 0.62em;
             }
 
             .upload-row .rap-btn {
@@ -4090,7 +4194,7 @@
                 </div>
                 <div class="tab8-card-body">
                     <div class="no-print" style="font-size:10px;color:#6b7280;margin-bottom:6px;">
-                        Menyimpan seluruh data (Bank Data Penjualan, Data Uang Masuk, Riwayat Cetak Tagihan, Input Harian/Pembayaran, Catatan Piutang, dan Data Sampah) menjadi satu file backup <strong>.json</strong>.
+                        Menyimpan seluruh data (Bank Data Penjualan, Data Uang Masuk, Riwayat Cetak Tagihan, Input Harian/Pembayaran, Catatan Piutang, Pengeluaran, dan Data Sampah) menjadi satu file backup <strong>.json</strong>.
                     </div>
 
                     <div class="save-actions">
@@ -4119,6 +4223,10 @@
                         <div class="summary-item">
                             <div class="number" id="sumHarian" style="color:#7c3aed;">0</div>
                             <div class="label">Input Harian (tanggal)</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="number" id="sumPengeluaran" style="color:#0f766e;">0</div>
+                            <div class="label">Pengeluaran (bulan)</div>
                         </div>
                         <div class="summary-item sampah">
                             <div class="number" id="sumSampah">0</div>
@@ -4257,21 +4365,36 @@
 
     <div class="rap-container">
 
+        <!-- Banner penjelasan alur kerja -->
+        <div class="rap-flow-intro">
+            <div class="rap-flow-intro-title">🧭 Alur Rapikan Data (3 langkah)</div>
+            <div class="rap-flow-intro-steps">
+                <span><span class="num">1</span>Upload file penjualan mentah dari kasir</span>
+                <span class="sep">→</span>
+                <span><span class="num">2</span>Cek/lengkapi Harga Beli tiap produk</span>
+                <span class="sep">→</span>
+                <span><span class="num">3</span>Download hasil rapi &amp; kirim ke Bank Data Penjualan</span>
+            </div>
+        </div>
+
         <!-- Step Indicator -->
         <div class="step-indicator">
             <div class="step active" id="step1">
                 <span class="step-num">1</span>
-                <span>Upload</span>
+                <span class="step-label">Upload</span>
+                <span class="step-desc">File mentah</span>
             </div>
             <div class="step-line" id="line1"></div>
             <div class="step" id="step2">
                 <span class="step-num">2</span>
-                <span>Harga Beli</span>
+                <span class="step-label">Harga Beli</span>
+                <span class="step-desc">Cek modal</span>
             </div>
             <div class="step-line" id="line2"></div>
             <div class="step" id="step3">
                 <span class="step-num">3</span>
-                <span>Download</span>
+                <span class="step-label">Download</span>
+                <span class="step-desc">Hasil rapi</span>
             </div>
         </div>
 
@@ -4279,8 +4402,10 @@
         <div class="rap-card" id="cardUpload">
             <div class="rap-card-title">
                 <span class="icon">📁</span>
+                <span class="rap-step-badge">Langkah 1/3</span>
                 Upload File Data Mentah Penjualan
             </div>
+            <div class="rap-step-hint">👉 Pilih file Excel (.xls/.xlsx) hasil export dari kasir. Setelah file terbaca, Anda otomatis lanjut ke Langkah 2 (Harga Beli).</div>
 
             <div class="upload-row">
                 <button class="rap-btn rap-btn-primary" onclick="document.getElementById('fileInput').click()">
@@ -4311,8 +4436,10 @@
         <div class="rap-card hidden" id="cardHargaBeli">
             <div class="rap-card-title">
                 <span class="icon">💰</span>
+                <span class="rap-step-badge">Langkah 2/3</span>
                 Daftar Harga Beli (Modal)
             </div>
+            <div class="rap-step-hint">👉 Cek harga beli tiap produk di tabel bawah ini (isi manual atau upload Excel harga beli). Kalau sudah beres, klik <strong>"⚡ Proses Data &amp; Lihat Hasil"</strong> untuk lanjut ke Langkah 3.</div>
             <p style="color:#555; margin-bottom:4px; font-size:0.65em;">
                 Harga beli otomatis tersimpan. <strong>Bisa diedit</strong> langsung di tabel.
                 Klik <strong>💾</strong> untuk menyimpan harga per produk.
@@ -4366,8 +4493,10 @@
         <div class="rap-card hidden" id="cardResult">
             <div class="rap-card-title">
                 <span class="icon">✅</span>
+                <span class="rap-step-badge">Langkah 3/3</span>
                 Data Sudah Rapi!
             </div>
+            <div class="rap-step-hint">👉 (Opsional) Filter periode/bulan dulu kalau perlu, lalu klik <strong>"📤 Kirim ke Bank Data Penjualan"</strong> atau <strong>"📥 Download"</strong> untuk menyimpan hasilnya.</div>
 
             <!-- Filter Periode + Bulan -->
             <div class="filter-periode">
@@ -10217,16 +10346,18 @@
 
         async function renderRingkasanSaveAll() {
             try {
-                const [salesCount, cashCount, printCount, sampahCount] = await Promise.all([
+                const [salesCount, cashCount, printCount, sampahCount, pengeluaranCount] = await Promise.all([
                     db.sales.count(),
                     db.cashIncome.count(),
                     db.printHistory.count(),
-                    db.trash.count()
+                    db.trash.count(),
+                    db.pengeluaran.count()
                 ]);
                 document.getElementById('sumSales').textContent = salesCount;
                 document.getElementById('sumCash').textContent = cashCount;
                 document.getElementById('sumPrint').textContent = printCount;
                 document.getElementById('sumHarian').textContent = getAllInputHarianKeys().length;
+                document.getElementById('sumPengeluaran').textContent = pengeluaranCount;
                 document.getElementById('sumSampah').textContent = sampahCount;
                 const trashBadge = document.getElementById('badgeTrash');
                 if (trashBadge) trashBadge.textContent = sampahCount;
@@ -10251,14 +10382,15 @@
             if (!ok) return;
 
             try {
-                const [sales, cashIncome, printHistory, trash, piutangNotes, cashNotes, cetakTagihan] = await Promise.all([
+                const [sales, cashIncome, printHistory, trash, piutangNotes, cashNotes, cetakTagihan, pengeluaran] = await Promise.all([
                     db.sales.toArray(),
                     db.cashIncome.toArray(),
                     db.printHistory.toArray(),
                     db.trash.toArray(),
                     db.piutangNotes.toArray(),
                     db.cashNotes.toArray(),
-                    db.cetakTagihanMap.toArray()
+                    db.cetakTagihanMap.toArray(),
+                    db.pengeluaran.toArray()
                 ]);
 
                 const inputHarian = {};
@@ -10272,7 +10404,7 @@
                     app: 'GAJAH MAS 2026 - All in One',
                     backupVersion: 2,
                     exportedAt: new Date().toISOString(),
-                    data: { sales, cashIncome, printHistory, inputHarian, trash, piutangNotes, cashNotes, cetakTagihan }
+                    data: { sales, cashIncome, printHistory, inputHarian, trash, piutangNotes, cashNotes, cetakTagihan, pengeluaran }
                 };
 
                 const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
@@ -10316,7 +10448,7 @@
                     const ok = confirm('Restore akan MENIMPA data yang ada saat ini dengan isi file backup. Lanjutkan?');
                     if (!ok) return;
 
-                    const { sales, cashIncome, printHistory, inputHarian, trash, piutangNotes, cashNotes, cetakTagihan } = backup.data;
+                    const { sales, cashIncome, printHistory, inputHarian, trash, piutangNotes, cashNotes, cetakTagihan, pengeluaran } = backup.data;
 
                     if (Array.isArray(sales)) {
                         await db.sales.clear();
@@ -10345,6 +10477,10 @@
                     if (Array.isArray(cetakTagihan)) {
                         await db.cetakTagihanMap.clear();
                         if (cetakTagihan.length) await db.cetakTagihanMap.bulkAdd(cetakTagihan);
+                    }
+                    if (Array.isArray(pengeluaran)) {
+                        await db.pengeluaran.clear();
+                        if (pengeluaran.length) await db.pengeluaran.bulkAdd(pengeluaran);
                     }
                     if (inputHarian && typeof inputHarian === 'object') {
                         getAllInputHarianKeys().forEach(function(k) { localStorage.removeItem(k); });
