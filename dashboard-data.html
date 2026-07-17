@@ -2244,7 +2244,7 @@
             border-radius: 10px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.08);
             overflow: hidden;
-            margin-bottom: 16px;
+            margin-bottom: 8px;
             border: 1px solid #e2e8f0;
             width: 100%;
             display: block !important;
@@ -2259,15 +2259,15 @@
         #tab8 .tab8-card .tab8-card-head {
             background: #2d3748;
             color: #fff;
-            padding: 10px 18px;
+            padding: 6px 16px;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            gap: 8px 16px;
+            gap: 4px 16px;
         }
         #tab8 .tab8-card .tab8-card-head .title {
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -2275,11 +2275,11 @@
         }
         #tab8 .tab8-card .tab8-card-head .title small {
             font-weight: 400;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #b0c4de;
         }
         #tab8 .tab8-card .tab8-card-body {
-            padding: 14px 18px;
+            padding: 8px 16px;
         }
         #tab8 .trash-filter-bar {
             display: flex;
@@ -2467,25 +2467,25 @@
         #tab8 .save-summary-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 10px;
-            margin-top: 12px;
+            gap: 6px;
+            margin-top: 8px;
         }
         #tab8 .save-summary-grid .summary-item {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
             border-radius: 8px;
-            padding: 10px 14px;
+            padding: 5px 10px;
             text-align: center;
         }
         #tab8 .save-summary-grid .summary-item .number {
-            font-size: 20px;
+            font-size: 15px;
             font-weight: 700;
             color: #1d4ed8;
         }
         #tab8 .save-summary-grid .summary-item .label {
-            font-size: 9px;
+            font-size: 8px;
             color: #64748b;
-            margin-top: 2px;
+            margin-top: 1px;
         }
         #tab8 .save-summary-grid .summary-item.sampah .number {
             color: #c2410c;
@@ -2499,17 +2499,17 @@
             gap: 10px;
             flex-wrap: wrap;
             align-items: center;
-            margin-top: 6px;
+            margin-top: 4px;
         }
         #tab8 .save-actions .btn {
             font-size: 12px;
-            padding: 8px 18px;
+            padding: 6px 16px;
             height: auto;
         }
         #tab8 .save-status {
             font-size: 10px;
             color: #6b7280;
-            margin-top: 10px;
+            margin-top: 6px;
         }
         @media (max-width:768px) {
             #tab8 .trash-table-wrap table {
@@ -4089,15 +4089,15 @@
                     <span style="font-size:10px; color:#b0c4de;" id="saveAllStatus">📭 Belum pernah backup.</span>
                 </div>
                 <div class="tab8-card-body">
-                    <div class="no-print" style="font-size:10px;color:#6b7280;margin-bottom:12px;">
+                    <div class="no-print" style="font-size:10px;color:#6b7280;margin-bottom:6px;">
                         Menyimpan seluruh data (Bank Data Penjualan, Data Uang Masuk, Riwayat Cetak Tagihan, Input Harian/Pembayaran, Catatan Piutang, dan Data Sampah) menjadi satu file backup <strong>.json</strong>.
                     </div>
 
                     <div class="save-actions">
-                        <button class="btn btn-success" id="btnSaveAllData" style="font-size:13px;padding:10px 24px;">
+                        <button class="btn btn-success" id="btnSaveAllData" style="font-size:12px;padding:7px 20px;">
                             <i class="bi bi-save"></i> 💾 Save All Data
                         </button>
-                        <button class="btn btn-outline" id="btnRestoreAllData" style="font-size:13px;padding:10px 24px;">
+                        <button class="btn btn-outline" id="btnRestoreAllData" style="font-size:12px;padding:7px 20px;">
                             <i class="bi bi-cloud-download"></i> ⬆️ Restore dari Backup
                         </button>
                         <input type="file" id="restoreAllFileInput" accept="application/json" style="display:none;">
@@ -4126,7 +4126,7 @@
                         </div>
                     </div>
 
-                    <div class="no-print text-muted" style="font-size:9px;color:#94a3b8;margin-top:14px;border-top:1px solid #e2e8f0;padding-top:10px;">
+                    <div class="no-print text-muted" style="font-size:9px;color:#94a3b8;margin-top:8px;border-top:1px solid #e2e8f0;padding-top:6px;">
                         ⚠️ Data tersimpan di perangkat ini saja. Lakukan <strong>Save All Data</strong> secara rutin dan simpan file backup-nya di tempat aman.
                     </div>
                 </div>
@@ -4139,18 +4139,18 @@
                     <span style="font-size:10px; color:#b0c4de;" id="riwayatCetakCount">0 log</span>
                 </div>
                 <div class="tab8-card-body">
-                    <div class="no-print" style="font-size:10px;color:#6b7280;margin-bottom:12px;">
+                    <div class="no-print" style="font-size:10px;color:#6b7280;margin-bottom:6px;">
                         Setiap klik <strong>🖨️ Cetak Semua</strong> (Cetak Tagihan) maupun <strong>🖨️ Cetak</strong> (Pembayaran/Input Harian) otomatis dicatat di sini lengkap dengan waktu klik, jenis cetakan, dan ringkasan isinya.
                     </div>
                     <div class="save-actions">
-                        <button class="btn btn-outline" id="btnRefreshRiwayatCetak" style="font-size:12px;padding:8px 18px;">
+                        <button class="btn btn-outline" id="btnRefreshRiwayatCetak" style="font-size:12px;padding:6px 16px;">
                             <i class="bi bi-arrow-clockwise"></i> Refresh
                         </button>
-                        <button class="btn" id="btnKosongkanRiwayatCetak" style="font-size:12px;padding:8px 18px;">
+                        <button class="btn" id="btnKosongkanRiwayatCetak" style="font-size:12px;padding:6px 16px;">
                             <i class="bi bi-trash"></i> Kosongkan Riwayat
                         </button>
                     </div>
-                    <div class="trash-table-wrap" style="margin-top:12px;">
+                    <div class="trash-table-wrap" style="margin-top:6px;">
                         <table>
                             <thead>
                                 <tr>
@@ -4175,10 +4175,10 @@
                     <span style="font-size:10px; color:#b0c4de;" id="produkHargaCountLabel">0 produk</span>
                 </div>
                 <div class="tab8-card-body">
-                    <div class="no-print" style="font-size:10px;color:#6b7280;margin-bottom:12px;">
+                    <div class="no-print" style="font-size:10px;color:#6b7280;margin-bottom:6px;">
                         Kelola daftar master produk beserta harga beli &amp; harga jualnya di sini. Data disimpan di perangkat ini (seperti draft Input Harian).
                     </div>
-                    <button class="btn btn-success" id="btnBukaProdukHarga" style="font-size:13px;padding:10px 24px;">
+                    <button class="btn btn-success" id="btnBukaProdukHarga" style="font-size:12px;padding:7px 20px;">
                         <i class="bi bi-box-seam"></i> 📦 Buka Produk &amp; Harga
                     </button>
                 </div>
