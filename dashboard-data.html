@@ -2744,7 +2744,7 @@
         }
 
         .rap-card-title {
-            font-size: 0.9em;
+            font-size: 1.08em;
             color: #222;
             margin-bottom: 6px;
             display: flex;
@@ -2932,15 +2932,15 @@
         }
 
         .upload-row .rap-btn {
-            font-size: 0.7em;
-            padding: 4px 14px;
+            font-size: 0.88em;
+            padding: 5px 16px;
         }
 
         .upload-row .file-label {
-            font-size: 0.6em;
+            font-size: 0.8em;
             color: #555;
             background: #f1f3f5;
-            padding: 2px 10px;
+            padding: 3px 11px;
             border-radius: 12px;
             border: 1px solid #e0e0e0;
             white-space: nowrap;
@@ -2961,10 +2961,10 @@
             align-items: center;
             justify-content: center;
             gap: 4px;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border: none;
             border-radius: 5px;
-            font-size: 0.65em;
+            font-size: 0.82em;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -2992,6 +2992,20 @@
             box-shadow: 0 3px 12px rgba(30, 122, 70, 0.3);
         }
 
+        .rap-btn-blink {
+            animation: rapBtnBlink 1.3s ease-in-out infinite;
+        }
+        @keyframes rapBtnBlink {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 0 0 rgba(30, 122, 70, 0.55);
+            }
+            50% {
+                opacity: 0.72;
+                box-shadow: 0 0 0 7px rgba(30, 122, 70, 0);
+            }
+        }
+
         .rap-btn-danger {
             background: #9b2c2c;
             color: #fff;
@@ -3012,13 +3026,13 @@
         }
 
         .rap-btn-sm {
-            padding: 2px 6px;
-            font-size: 0.55em;
+            padding: 3px 8px;
+            font-size: 0.72em;
         }
 
         .rap-btn-xs {
-            padding: 2px 6px;
-            font-size: 0.55em;
+            padding: 3px 8px;
+            font-size: 0.72em;
             border-radius: 4px;
         }
 
@@ -3030,7 +3044,7 @@
             border-radius: 6px;
             margin-bottom: 4px;
             font-weight: 500;
-            font-size: 0.65em;
+            font-size: 0.85em;
         }
 
         .status-bar.success {
@@ -3087,19 +3101,19 @@
 
         .file-info .file-details h4 {
             color: #222;
-            font-size: 0.7em;
+            font-size: 0.88em;
             margin-bottom: 0;
         }
 
         .file-info .file-details p {
             color: #666;
-            font-size: 0.55em;
+            font-size: 0.74em;
         }
 
         .file-info .rap-btn {
             margin-left: auto;
-            font-size: 0.55em;
-            padding: 2px 8px;
+            font-size: 0.72em;
+            padding: 3px 10px;
         }
 
         .tabs {
@@ -3111,12 +3125,12 @@
         }
 
         .rap-tab-btn {
-            padding: 4px 12px;
+            padding: 5px 14px;
             background: none;
             border: none;
             border-bottom: 3px solid transparent;
             cursor: pointer;
-            font-size: 0.65em;
+            font-size: 0.85em;
             font-weight: 600;
             color: #666;
             transition: all 0.2s ease;
@@ -4494,8 +4508,8 @@
             </div>
 
             <div class="action-buttons" style="margin-top:10px;">
-                <button class="rap-btn rap-btn-success" onclick="processData()" id="btnProcess">
-                    ⚡ Proses Data &amp; Lihat Hasil
+                <button class="rap-btn rap-btn-success rap-btn-blink" onclick="processData()" id="btnProcess">
+                    ⚡ Klik Proses Data &amp; Lihat Hasil
                 </button>
             </div>
         </div>
@@ -11606,7 +11620,4 @@
             <h2 id="authTitle" style="margin:0 0 6px; color:#1f4e78; font-size:20px;">🔒 Masuk ke GAJAH MAS 2026</h2>
             <p style="margin:0 0 18px; color:#555; font-size:13px;">Login diperlukan supaya data hanya bisa diakses oleh tim kamu.</p>
             <label style="display:block; font-size:13px; margin-bottom:4px; color:#333;">Username</label>
-            <input id="authUsername" type="text" autocomplete="username" required style="width:100%; padding:10px; margin-bottom:12px; border:1px solid #ccc; border-radius:6px; font-size:14px; box-sizing:border-box;">
-            <label style="display:block; font-size:13px; margin-bottom:4px; color:#333;">Password</label>
-            <input id="authPassword" type="password" autocomplete="current-password" required minlength="6" style="width:100%; padding:10px; margin-bottom:16px; border:1px solid #ccc; border-radius:6px; font-size:14px; box-sizing:border-box;">
-            <button id="authSubmitBtn" type="s
+            <input id="authUsername" type="text" autocomplete="username" required style="width:100%; padding:10px; margin-bottom:12px; border:1px solid #ccc; border-radius:6px; font-size:14px; box-sizi
