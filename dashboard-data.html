@@ -2713,874 +2713,285 @@
             background: #fde68a;
         }
 
-    <!-- ===== CSS untuk tab Rapikan Data (di-scope dengan .rap-scope / .rap-*) ===== -->
+    <!-- ===== CSS untuk tab Rapikan Data (versi baru, di-scope dengan .rap-scope) ===== -->
     <style>
-        /* Reset '*' dihapus — dashboard sudah punya reset sendiri.
-           Rule 'body' di-scope ke .rap-scope supaya tidak menimpa body dashboard. */
         .rap-scope {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 10px 8px;
+            --rap-ink: #1a1a1a;
+            --rap-blue: #1f4e9c;
+            --rap-blue-light: #2f6fd1;
+            --rap-gray-header: #d9d9d9;
+            --rap-gray-line: #bfbfbf;
+            --rap-row-alt: #f5f6f7;
+            --rap-green: #1e7d3c;
+            --rap-red: #c0392b;
+            --rap-paper: #ffffff;
+            background: var(--rap-paper);
+            color: var(--rap-ink);
+            font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+            font-size: 13px;
         }
-
-        .rap-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* .header (dead code, elemennya sudah dihapus) dilepas */
-
-        .rap-card {
-            background: #fff;
-            border-radius: 10px;
-            padding: 10px 12px;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
-            transition: transform 0.15s ease;
-        }
-
-        .rap-card:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
-        }
-
-        .rap-card-title {
-            font-size: 1.08em;
-            color: #222;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: 600;
-        }
-
-        .rap-card-title .icon {
-            font-size: 1em;
-        }
-
-        /* ===== Intro banner alur kerja ===== */
-        .rap-flow-intro {
-            background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
-            border: 1px solid #bfdbfe;
-            border-radius: 10px;
-            padding: 10px 14px;
-            margin-bottom: 12px;
-        }
-        .rap-flow-intro-title {
-            font-size: 1em;
-            font-weight: 700;
-            color: #1e3a8a;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .rap-flow-intro-steps {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px 10px;
-            font-size: 0.86em;
-            line-height: 1.5;
-            color: #334155;
-        }
-        .rap-flow-intro-steps span.num {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 19px;
-            height: 19px;
-            border-radius: 50%;
-            background: #1d4ed8;
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.95em;
-            margin-right: 4px;
-        }
-        .rap-flow-intro-steps .sep {
-            color: #94a3b8;
-            margin: 0 2px;
-        }
-
-        /* ===== Step Indicator (progress alur 3 langkah) ===== */
-        .step-indicator {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 0;
-            margin-bottom: 14px;
-            flex-wrap: nowrap;
-            max-width: 640px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 4px;
-            color: #94a3b8;
-            font-weight: 600;
-            font-size: 0.68em;
-            background: transparent;
-            padding: 0 4px;
-            border-radius: 0;
-            transition: all 0.3s ease;
-            flex: 1 1 0;
-            min-width: 0;
-        }
-
-        .step .step-num {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #e2e8f0;
-            color: #94a3b8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9em;
-            flex-shrink: 0;
-            border: 2px solid #e2e8f0;
-            transition: all 0.3s ease;
-        }
-
-        .step .step-label {
-            font-size: 1em;
-            font-weight: 700;
-            color: #64748b;
-        }
-
-        .step .step-desc {
-            font-size: 0.85em;
-            font-weight: 400;
-            color: #94a3b8;
-            line-height: 1.2;
-        }
-
-        .step.active .step-num {
-            background: #1d4ed8;
-            color: #fff;
-            border-color: #1d4ed8;
-            box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.15);
-        }
-        .step.active .step-label {
-            color: #1d4ed8;
-        }
-        .step.active .step-desc {
-            color: #1d4ed8;
-        }
-
-        .step.completed .step-num {
-            background: #1e7a46;
-            color: #fff;
-            border-color: #1e7a46;
-        }
-        .step.completed .step-num::after {
-            content: "✓";
-        }
-        .step.completed .step-label {
-            color: #1e7a46;
-        }
-
-        .step-line {
-            flex: 0 0 auto;
-            width: 36px;
-            height: 2px;
-            background: #cbd5e1;
-            margin-top: 14px;
-            border-radius: 2px;
-            transition: background 0.4s ease;
-        }
-        .step-line.completed {
-            background: #1e7a46;
-        }
-
-        /* Petunjuk kecil "berikutnya" di bawah judul kartu step aktif */
-        .rap-step-hint {
-            font-size: 0.85em;
-            line-height: 1.5;
-            color: #1e3a8a;
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            border-radius: 6px;
-            padding: 7px 10px;
-            margin: -2px 0 10px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 6px;
-        }
-        .rap-step-badge {
-            display: inline-block;
-            font-size: 0.75em;
-            font-weight: 700;
-            color: #fff;
-            background: #1d4ed8;
-            padding: 2px 8px;
-            border-radius: 10px;
-            margin-right: 6px;
-            white-space: nowrap;
-        }
-
-        .upload-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 4px 0;
-        }
-
-        .upload-row .rap-btn {
-            font-size: 0.88em;
-            padding: 5px 16px;
-        }
-
-        .upload-row .file-label {
-            font-size: 0.8em;
-            color: #555;
-            background: #f1f3f5;
-            padding: 3px 11px;
-            border-radius: 12px;
-            border: 1px solid #e0e0e0;
-            white-space: nowrap;
-        }
-
-        .upload-row .file-label.has-file {
-            background: #d4edda;
-            border-color: #28a745;
-            color: #155724;
-        }
-
-        .rap-scope input[type="file"] {
-            display: none;
-        }
-
-        .rap-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            padding: 5px 12px;
-            border: none;
-            border-radius: 5px;
-            font-size: 0.82em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-
-        .rap-btn-primary {
-            background: #1d4ed8;
-            color: #fff;
-        }
-        .rap-btn-primary:hover {
-            transform: translateY(-1px);
-            background: #1e40af;
-            box-shadow: 0 3px 12px rgba(29, 78, 216, 0.3);
-        }
-
-        .rap-btn-success {
-            background: #1e7a46;
-            color: #fff;
-        }
-        .rap-btn-success:hover {
-            transform: translateY(-1px);
-            background: #276749;
-            box-shadow: 0 3px 12px rgba(30, 122, 70, 0.3);
-        }
-
-        .rap-btn-blink {
-            animation: rapBtnBlink 1.3s ease-in-out infinite;
-        }
-        @keyframes rapBtnBlink {
-            0%, 100% {
-                opacity: 1;
-                box-shadow: 0 0 0 0 rgba(30, 122, 70, 0.55);
-            }
-            50% {
-                opacity: 0.72;
-                box-shadow: 0 0 0 7px rgba(30, 122, 70, 0);
-            }
-        }
-
-        .rap-btn-danger {
-            background: #9b2c2c;
-            color: #fff;
-        }
-        .rap-btn-danger:hover {
-            transform: translateY(-1px);
-            background: #822727;
-            box-shadow: 0 3px 12px rgba(155, 44, 44, 0.3);
-        }
-
-        .rap-btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-        }
-        .rap-btn-secondary:hover {
-            background: #e0e0e0;
-            transform: translateY(-1px);
-        }
-
-        .rap-btn-sm {
-            padding: 3px 8px;
-            font-size: 0.72em;
-        }
-
-        .rap-btn-xs {
-            padding: 3px 8px;
-            font-size: 0.72em;
-            border-radius: 4px;
-        }
-
-        .status-bar {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            margin-bottom: 4px;
-            font-weight: 500;
-            font-size: 0.85em;
-        }
-
-        .status-bar.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        .status-bar.info {
-            background: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
-        }
-        .status-bar.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        .status-bar.hidden {
-            display: none !important;
-        }
-
-        .progress-bar {
+        .rap-scope * { box-sizing: border-box; }
+        .rap-scope .wrap {
             width: 100%;
-            height: 3px;
-            background: #e9ecef;
-            border-radius: 3px;
-            overflow: hidden;
-            margin: 3px 0 0;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
         }
-
-        .progress-bar .progress-fill {
-            height: 100%;
-            background: #1d4ed8;
-            border-radius: 3px;
-            transition: width 0.5s ease;
-            width: 0%;
+        .rap-scope h1.title {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: .2px;
+            margin: 0 0 18px 0;
+            text-transform: uppercase;
+            color: var(--rap-ink);
         }
-
-        .file-info {
+        .rap-scope .section-label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0 0 12px 0;
+            color: var(--rap-ink);
+        }
+        .rap-scope .upload-row {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 4px 8px;
-            background: #f8f9fa;
-            border-radius: 6px;
-            margin: 4px 0 2px;
+            justify-content: flex-start;
+            gap: 16px;
+            margin-bottom: 34px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid #eee;
             flex-wrap: wrap;
         }
-
-        .file-info .file-icon {
-            font-size: 1.2em;
-            line-height: 1;
-        }
-
-        .file-info .file-details h4 {
-            color: #222;
-            font-size: 0.88em;
-            margin-bottom: 0;
-        }
-
-        .file-info .file-details p {
-            color: #666;
-            font-size: 0.74em;
-        }
-
-        .file-info .rap-btn {
-            margin-left: auto;
-            font-size: 0.72em;
-            padding: 3px 10px;
-        }
-
-        .tabs {
+        .rap-scope .upload-left {
             display: flex;
-            gap: 2px;
-            margin-bottom: 6px;
-            border-bottom: 2px solid #e8e8e8;
+            align-items: center;
+            gap: 14px;
             flex-wrap: wrap;
         }
+        .rap-scope .file-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            border: 1px solid var(--rap-gray-line);
+            padding: 7px 14px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12.5px;
+            color: var(--rap-ink);
+        }
+        .rap-scope .file-btn:hover { border-color: var(--rap-blue); color: var(--rap-blue); }
+        .rap-scope input[type="file"] { display: none; }
+        .rap-scope .file-name {
+            font-size: 12.5px;
+            color: #666;
+            font-style: italic;
+        }
+        .rap-scope .btn-proses {
+            background: var(--rap-blue);
+            color: #fff;
+            border: none;
+            padding: 9px 26px;
+            border-radius: 3px;
+            font-weight: 700;
+            letter-spacing: .5px;
+            font-size: 12.5px;
+            cursor: pointer;
+        }
+        .rap-scope .btn-proses:hover { background: var(--rap-blue-light); }
+        .rap-scope .btn-proses:disabled { background: #e2e8f0; color: #64748b; cursor: not-allowed; }
 
-        .rap-tab-btn {
-            padding: 5px 14px;
+        .rap-scope .status-msg {
+            font-size: 12px;
+            margin-top: 8px;
+            min-height: 16px;
+        }
+        .rap-scope .status-msg.ok { color: var(--rap-green); }
+        .rap-scope .status-msg.err { color: var(--rap-red); }
+
+        .rap-scope .filter-row {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+        .rap-scope .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .rap-scope .filter-item label {
+            color: var(--rap-blue);
+            text-decoration: underline;
+            font-size: 12.5px;
+            cursor: default;
+            white-space: nowrap;
+        }
+        .rap-scope select, .rap-scope input[type="date"] {
+            font-family: inherit;
+            font-size: 12.5px;
+            padding: 4px 6px;
+            border: 1px solid var(--rap-gray-line);
+            border-radius: 3px;
+            color: var(--rap-ink);
+            background: #fff;
+        }
+        .rap-scope .summary {
+            font-size: 12px;
+            color: #555;
+            margin-left: auto;
+        }
+
+        .rap-scope table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 22px;
+            table-layout: fixed;
+        }
+        .rap-scope thead th {
+            background: var(--rap-gray-header);
+            border: 1px solid #bcbcbc;
+            padding: 7px 8px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 12.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .rap-scope tbody td {
+            border: 1px solid #e2e2e2;
+            padding: 6px 8px;
+            font-size: 12.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .rap-scope tbody tr:nth-child(even) { background: var(--rap-row-alt); }
+        .rap-scope tbody tr:hover { background: #eef3fc; }
+        .rap-scope td.num { text-align: right; font-variant-numeric: tabular-nums; }
+        .rap-scope td.editable { color: var(--rap-blue); }
+        .rap-scope td.editable select, .rap-scope td.editable input {
+            width: 100%;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--rap-blue);
+            text-decoration: underline;
+            font-size: 12.5px;
+            padding: 2px 2px;
+        }
+        .rap-scope td.editable input[type="number"] {
+            text-align: right;
+            text-decoration: none;
+        }
+        .rap-scope td.editable select:hover, .rap-scope td.editable input:hover,
+        .rap-scope td.editable select:focus, .rap-scope td.editable input:focus {
+            border-color: var(--rap-blue-light);
+            background: #fff;
+        }
+
+        .rap-scope .empty-state {
+            padding: 40px 10px;
+            text-align: center;
+            color: #888;
+            font-size: 12.5px;
+            border: 1px dashed var(--rap-gray-line);
+            border-radius: 4px;
+            margin-bottom: 22px;
+        }
+
+        .rap-scope .btn-download, .rap-scope .btn-kirim {
+            background: var(--rap-blue);
+            border: 1px solid var(--rap-blue);
+            color: #ffffff;
+            padding: 9px 18px;
+            border-radius: 3px;
+            font-weight: 700;
+            font-size: 12.5px;
+            letter-spacing: .4px;
+            cursor: pointer;
+        }
+        .rap-scope .btn-download:hover, .rap-scope .btn-kirim:hover { background: var(--rap-blue-light); border-color: var(--rap-blue-light); }
+        .rap-scope .btn-download:disabled, .rap-scope .btn-kirim:disabled {
+            border-color: #cbd5e1; color: #64748b; cursor: not-allowed; background: #e2e8f0;
+        }
+        .rap-scope .btn-kirim {
+            background: var(--rap-green);
+            border-color: var(--rap-green);
+            color: #ffffff;
+        }
+        .rap-scope .btn-kirim:hover { background: #17612e; border-color: #17612e; }
+        .rap-scope .btn-kirim:disabled { background: #e2e8f0; border-color: #cbd5e1; color: #64748b; }
+        .rap-scope .result-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .rap-scope .table-scroll {
+            overflow-x: auto;
+            border: 1px solid transparent;
+        }
+
+        .rap-scope .table-scroll-limited {
+            max-height: 182px;
+            overflow-y: auto;
+            border: 1px solid #d3d3d3;
+            border-radius: 3px;
+        }
+        .rap-scope .table-scroll-limited table { margin-bottom: 0; }
+        .rap-scope .table-scroll-limited thead th {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .rap-scope .table-scroll-limited-main { max-height: 216px; margin-bottom: 22px; }
+        .rap-scope .table-scroll-limited-main table { margin-bottom: 0; }
+
+        .rap-scope .hint-text {
+            font-size: 12px;
+            color: #666;
+            margin: 0 0 16px 0;
+        }
+
+        .rap-scope .reset-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #888;
+            text-decoration: underline;
+            cursor: pointer;
             background: none;
             border: none;
-            border-bottom: 3px solid transparent;
+            padding: 0;
+        }
+        .rap-scope .reset-link:hover { color: var(--rap-red); }
+
+        .rap-scope .section-divider { border-top: 2px solid #eee; margin: 20px 0 18px; }
+
+        .rap-scope .link-btn {
+            background: none;
+            border: none;
+            color: var(--rap-blue);
+            text-decoration: underline;
+            font-size: 12.5px;
             cursor: pointer;
-            font-size: 0.85em;
-            font-weight: 600;
-            color: #666;
-            transition: all 0.2s ease;
-            border-radius: 0;
+            padding: 0;
+        }
+        .rap-scope .link-btn:hover { color: var(--rap-blue-light); }
+
+        .rap-scope .kirim-info {
+            font-size: 12px;
+            color: #555;
+            margin: -4px 0 10px 0;
         }
 
-        .rap-tab-btn.active {
-            color: #1d4ed8;
-            border-bottom-color: #1d4ed8;
-        }
-
-        .rap-tab-btn:hover {
-            color: #1d4ed8;
-        }
-
-        .rap-tab-content {
-            display: none;
-        }
-        .rap-tab-content.active {
-            display: block;
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 4px 8px;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
-            font-size: 0.65em;
-            margin-bottom: 6px;
-            transition: border-color 0.3s ease;
-        }
-
-        .search-box:focus {
-            outline: none;
-            border-color: #1d4ed8;
-        }
-
-        .harga-beli-editor {
-            background: #f8f9fa;
-            border-radius: 6px;
-            padding: 6px 8px 8px;
-        }
-
-        .harga-beli-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 1.05em;
-        }
-
-        .harga-beli-table th {
-            background: #495057;
-            color: #fff;
-            padding: 9px 10px;
-            text-align: left;
-            position: sticky;
-            top: 0;
-            z-index: 2;
-            font-size: 1em;
-        }
-
-        .harga-beli-table td {
-            padding: 9px 10px;
-            border-bottom: 1px solid #dee2e6;
-            vertical-align: middle;
-        }
-
-        .harga-beli-table tr:nth-child(even) {
-            background: #fff;
-        }
-        .harga-beli-table tr:hover {
-            background: #e9ecef;
-        }
-
-        .harga-beli-table input {
-            width: 95px;
-            padding: 6px 8px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            font-size: 1.05em;
-            text-align: right;
-            transition: border-color 0.2s;
-            background: #fff;
-        }
-
-        .harga-beli-table input:focus {
-            outline: none;
-            border-color: #1d4ed8;
-            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.2);
-        }
-
-        .harga-beli-table .rap-btn {
-            padding: 4px 8px;
-            font-size: 0.65em;
-            border-radius: 4px;
-        }
-
-        .harga-beli-table .action-cell {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: nowrap;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin-top: 8px;
-            justify-content: center;
-        }
-
-        .filter-periode {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 8px;
-            background: #f8f9fa;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 13px;
-        }
-
-        .filter-periode label {
-            font-weight: 600;
-            color: #333;
-        }
-
-        .filter-periode input[type="date"] {
-            padding: 3px 6px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            font-size: 0.9em;
-            background: #fff;
-        }
-
-        .filter-periode select {
-            padding: 3px 6px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            font-size: 0.9em;
-            background: #fff;
-        }
-
-        .filter-periode .rap-btn {
-            padding: 2px 10px;
-            font-size: 0.7em;
-        }
-
-        .data-table-rap-container {
-            overflow: auto;
-            max-height: 300px;
-            border-radius: 6px;
-            border: 1px solid #e0e0e0;
-        }
-
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-        }
-
-        .data-table thead {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .data-table th {
-            background: linear-gradient(135deg, #4472C4, #2E5C8A);
-            color: #fff;
-            padding: 6px 8px;
-            text-align: left;
-            font-weight: 600;
-            white-space: nowrap;
-            position: sticky;
-            top: 0;
-        }
-
-        .data-table td {
-            padding: 5px 8px;
-            border-bottom: 1px solid #e0e0e0;
-            white-space: nowrap;
-        }
-
-        .data-table tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-        .data-table tr:hover {
-            background: #e3f2fd;
-        }
-
-        .data-table td.number {
-            text-align: right;
-            font-family: 'Courier New', monospace;
-        }
-        .data-table td.date {
-            text-align: center;
-        }
-
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .loading-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .loading-spinner {
-            text-align: center;
-            color: #fff;
-        }
-
-        .spinner {
-            width: 32px;
-            height: 32px;
-            border: 3px solid rgba(255, 255, 255, 0.25);
-            border-top-color: #fff;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 8px;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .rap-toast {
-            position: fixed;
-            bottom: 16px;
-            right: 16px;
-            padding: 6px 14px;
-            border-radius: 6px;
-            color: #fff;
-            font-weight: 600;
-            z-index: 2000;
-            transform: translateX(150%);
-            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-            max-width: 280px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            font-size: 0.65em;
-        }
-
-        .rap-toast.show {
-            transform: translateX(0);
-        }
-        .rap-toast.success {
-            background: #28a745;
-        }
-        .rap-toast.error {
-            background: #dc3545;
-        }
-        .rap-toast.info {
-            background: #17a2b8;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.35s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .rap-card {
-                padding: 8px 8px;
-            }
-
-            .step {
-                font-size: 0.7em;
-                padding: 0 2px;
-            }
-            .step .step-num {
-                width: 24px;
-                height: 24px;
-                font-size: 0.85em;
-            }
-            .step .step-desc {
-                display: none;
-            }
-            .step-line {
-                width: 16px;
-                margin-top: 12px;
-            }
-            .rap-flow-intro-steps {
-                font-size: 0.78em;
-            }
-            .rap-flow-intro-title {
-                font-size: 0.95em;
-            }
-            .rap-step-hint {
-                font-size: 0.8em;
-            }
-            .rap-step-badge {
-                font-size: 0.72em;
-            }
-
-            .upload-row .rap-btn {
-                font-size: 0.6em;
-                padding: 3px 10px;
-            }
-            .upload-row .file-label {
-                font-size: 0.5em;
-                padding: 2px 8px;
-            }
-
-            .file-info {
-                padding: 3px 6px;
-                gap: 4px;
-            }
-            .file-info .file-icon {
-                font-size: 1em;
-            }
-            .file-info .file-details h4 {
-                font-size: 0.6em;
-            }
-            .file-info .file-details p {
-                font-size: 0.5em;
-            }
-            .file-info .rap-btn {
-                font-size: 0.5em;
-                padding: 2px 6px;
-            }
-
-            .harga-beli-table th,
-            .harga-beli-table td {
-                padding: 7px 7px;
-                font-size: 0.95em;
-            }
-            .harga-beli-table input {
-                width: 78px;
-                font-size: 1em;
-                padding: 5px 5px;
-            }
-            .harga-beli-table .rap-btn {
-                font-size: 0.55em;
-                padding: 3px 6px;
-            }
-            .harga-beli-table .action-cell {
-                gap: 4px;
-            }
-
-            .data-table-rap-container {
-                max-height: 220px;
-            }
-            .data-table {
-                font-size: 12px;
-            }
-            .data-table th,
-            .data-table td {
-                padding: 4px 6px;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .action-buttons .rap-btn {
-                justify-content: center;
-            }
-
-            .filter-periode {
-                font-size: 0.55em;
-                padding: 4px 6px;
-            }
-            .filter-periode input[type="date"],
-            .filter-periode select {
-                font-size: 0.8em;
-                padding: 2px 4px;
-            }
-
-            .rap-toast {
-                left: 10px;
-                right: 10px;
-                bottom: 10px;
-                max-width: none;
-                font-size: 0.6em;
-                padding: 6px 12px;
-            }
-
-        }
-
-        @media (max-width: 480px) {
-            .rap-card-title {
-                font-size: 0.75em;
-            }
-
-            .upload-row {
-                gap: 6px;
-            }
-            .upload-row .rap-btn {
-                font-size: 0.55em;
-                padding: 3px 8px;
-            }
-            .upload-row .file-label {
-                font-size: 0.45em;
-                padding: 1px 6px;
-            }
-
-            .filter-periode {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 4px;
-            }
-            .filter-periode .rap-btn {
-                align-self: center;
-            }
-
-            .harga-beli-table th,
-            .harga-beli-table td {
-                padding: 5px 5px;
-                font-size: 0.9em;
-            }
-            .harga-beli-table input {
-                width: 68px;
-                font-size: 0.95em;
-                padding: 3px 3px;
-            }
-            .harga-beli-table .rap-btn {
-                font-size: 0.5em;
-                padding: 2px 4px;
-            }
+        @media (max-width: 720px) {
+            .rap-scope .upload-row { flex-direction: column; align-items: flex-start; }
+            .rap-scope .filter-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .rap-scope .summary { margin-left: 0; }
         }
     </style>
 </head>
@@ -4376,1039 +3787,396 @@
     <!-- ======= TAB 9 – REKAP PROFIT ======= -->
     <div class="tab-content" id="tabRapikan" style="padding:0; max-width:100%;">
 <div class="rap-scope">
+<div class="wrap">
 
-    <!-- Loading -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner">
-            <div class="spinner"></div>
-            <p style="font-size:0.7em;">Memproses…</p>
-        </div>
+  <h1 class="title">Rapikan Data Penjualan Mentah Disini</h1>
+
+  <div class="upload-row">
+    <div class="upload-left">
+      <label class="file-btn" for="rapFileInput">Upload Data Penjualan Mentah</label>
+      <input type="file" id="rapFileInput" accept=".xls,.xlsx">
+      <span class="file-name" id="rapFileName">Belum ada file dipilih</span>
     </div>
+    <button class="btn-proses" id="rapProsesBtn" disabled>PROSES</button>
+  </div>
+  <div class="status-msg" id="rapStatusMsg"></div>
 
-    <!-- Toast -->
-    <div class="rap-toast" id="rap-toast"></div>
+  <p class="section-label">Cek Hasil</p>
 
-    <div class="rap-container">
-
-        <!-- Banner penjelasan alur kerja -->
-        <div class="rap-flow-intro">
-            <div class="rap-flow-intro-title">🧭 Alur Rapikan Data (3 langkah)</div>
-            <div class="rap-flow-intro-steps">
-                <span><span class="num">1</span>Upload file penjualan mentah dari kasir</span>
-                <span class="sep">→</span>
-                <span><span class="num">2</span>Cek/lengkapi Harga Beli tiap produk</span>
-                <span class="sep">→</span>
-                <span><span class="num">3</span>Download hasil rapi &amp; kirim ke Bank Data Penjualan</span>
-            </div>
-        </div>
-
-        <!-- Step Indicator -->
-        <div class="step-indicator">
-            <div class="step active" id="step1">
-                <span class="step-num">1</span>
-                <span class="step-label">Upload</span>
-                <span class="step-desc">File mentah</span>
-            </div>
-            <div class="step-line" id="line1"></div>
-            <div class="step" id="step2">
-                <span class="step-num">2</span>
-                <span class="step-label">Harga Beli</span>
-                <span class="step-desc">Cek modal</span>
-            </div>
-            <div class="step-line" id="line2"></div>
-            <div class="step" id="step3">
-                <span class="step-num">3</span>
-                <span class="step-label">Download</span>
-                <span class="step-desc">Hasil rapi</span>
-            </div>
-        </div>
-
-        <!-- STEP 1: Upload -->
-        <div class="rap-card" id="cardUpload">
-            <div class="rap-card-title">
-                <span class="icon">📁</span>
-                <span class="rap-step-badge">Langkah 1/3</span>
-                Upload File Data Mentah Penjualan
-            </div>
-            <div class="rap-step-hint">👉 Pilih file Excel (.xls/.xlsx) hasil export dari kasir. Setelah file terbaca, Anda otomatis lanjut ke Langkah 2 (Harga Beli).</div>
-
-            <div class="upload-row">
-                <button class="rap-btn rap-btn-primary" onclick="document.getElementById('fileInput').click()">
-                    📂 Pilih File
-                </button>
-                <span class="file-label" id="uploadLabel">Belum ada file</span>
-                <button class="rap-btn rap-btn-danger rap-btn-sm" id="btnClearFile" onclick="clearFile()" style="display:none;">
-                    ✕
-                </button>
-            </div>
-            <input type="file" id="fileInput" accept=".xls,.xlsx" onchange="handleFileSelect(event)" />
-
-            <div id="fileInfo" class="file-info hidden">
-                <span class="file-icon">📄</span>
-                <div class="file-details">
-                    <h4 id="fileName">-</h4>
-                    <p id="fileSize">-</p>
-                </div>
-            </div>
-
-            <div id="statusBar" class="status-bar hidden"></div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-        </div>
-
-        <!-- STEP 2: Harga Beli Editor -->
-        <div class="rap-card hidden" id="cardHargaBeli">
-            <div class="rap-card-title">
-                <span class="icon">💰</span>
-                <span class="rap-step-badge">Langkah 2/3</span>
-                Daftar Harga Beli (Modal)
-            </div>
-            <div class="rap-step-hint">👉 Cek harga beli tiap produk di tabel bawah ini (isi manual atau upload Excel harga beli). Kalau sudah beres, klik <strong>"⚡ Proses Data &amp; Lihat Hasil"</strong> untuk lanjut ke Langkah 3.</div>
-            <p style="color:#555; margin-bottom:4px; font-size:0.65em;">
-                Harga beli otomatis tersimpan. <strong>Bisa diedit</strong> langsung di tabel.
-                Klik <strong>💾</strong> untuk menyimpan harga per produk.
-            </p>
-
-            <div class="tabs">
-                <button class="rap-tab-btn active" onclick="rapSwitchTab('tabTabel', event)">📋 Tabel</button>
-                <button class="rap-tab-btn" onclick="rapSwitchTab('tabUpload', event)">📤 Upload Excel</button>
-            </div>
-
-            <div class="rap-tab-content active" id="tabTabel">
-                <input type="text" class="search-box" id="searchProduk" placeholder="🔍 Cari produk…" oninput="filterProduk()" />
-                <div class="harga-beli-editor">
-                    <div style="max-height:240px; overflow-y:auto;">
-                        <table class="harga-beli-table">
-                            <thead>
-                                <tr>
-                                    <th style="width:30px;">No</th>
-                                    <th>Nama Produk</th>
-                                    <th style="width:110px;">Harga Beli (Rp)</th>
-                                    <th style="width:100px;">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody id="hargaBeliBody"></tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="action-buttons">
-                    <button class="rap-btn rap-btn-secondary" onclick="resetHargaBeli()">🔄 Reset</button>
-                    <button class="rap-btn rap-btn-primary" onclick="downloadHargaBeli()">💾 Download</button>
-                </div>
-            </div>
-
-            <div class="rap-tab-content" id="tabUpload">
-                <div class="upload-zone" onclick="document.getElementById('hargaFileInput').click()" style="padding:8px 6px; border:2px dashed #1d4ed8; border-radius:8px; text-align:center; cursor:pointer; background:#f8f9ff;">
-                    <div class="upload-icon" style="font-size:1.2em;">📂</div>
-                    <p><strong>Klik</strong> untuk upload Excel Harga Beli</p>
-                    <p class="file-types" style="color:#999; font-size:0.5em;">File rapi (kolom "Produk"/"Harga beli") atau file mentah (mis. daftarharga.xls) — otomatis terdeteksi</p>
-                </div>
-                <input type="file" id="hargaFileInput" accept=".xlsx,.xls" onchange="handleHargaBeliUpload(event)" />
-            </div>
-
-            <div class="action-buttons" style="margin-top:10px;">
-                <button class="rap-btn rap-btn-success rap-btn-blink" onclick="processData()" id="btnProcess">
-                    ⚡ Klik Proses Data &amp; Lihat Hasil
-                </button>
-            </div>
-        </div>
-
-        <!-- STEP 3: Result -->
-        <div class="rap-card hidden" id="cardResult">
-            <div class="rap-card-title">
-                <span class="icon">✅</span>
-                <span class="rap-step-badge">Langkah 3/3</span>
-                Data Sudah Rapi!
-            </div>
-            <div class="rap-step-hint">👉 (Opsional) Filter periode/bulan dulu kalau perlu, lalu klik <strong>"📤 Kirim ke Bank Data Penjualan"</strong> atau <strong>"📥 Download"</strong> untuk menyimpan hasilnya.</div>
-
-            <!-- Filter Periode + Bulan -->
-            <div class="filter-periode">
-                <label>📅 Periode:</label>
-                <input type="date" id="filterTglAwal" />
-                <span>s.d.</span>
-                <input type="date" id="filterTglAkhir" />
-                <button class="rap-btn rap-btn-primary" onclick="applyFilterPeriode()">🔍 Filter</button>
-
-                <span style="margin-left:6px;">|</span>
-
-                <label>Bulan:</label>
-                <select id="filterBulan">
-                    <option value="">-- Pilih --</option>
-                    <option value="01">Jan</option>
-                    <option value="02">Feb</option>
-                    <option value="03">Mar</option>
-                    <option value="04">Apr</option>
-                    <option value="05">Mei</option>
-                    <option value="06">Jun</option>
-                    <option value="07">Jul</option>
-                    <option value="08">Agu</option>
-                    <option value="09">Sep</option>
-                    <option value="10">Okt</option>
-                    <option value="11">Nov</option>
-                    <option value="12">Des</option>
-                </select>
-                <select id="filterTahun">
-                    <option value="">-- Tahun --</option>
-                </select>
-                <button class="rap-btn rap-btn-primary" onclick="filterByBulan()">📆 Filter Bulan</button>
-                <button class="rap-btn rap-btn-secondary" onclick="resetFilterPeriode()">✕ Reset</button>
-            </div>
-
-            <div class="kirim-bankdata-bar" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:6px 10px;margin-bottom:8px;">
-                <span id="kirimBankDataInfo" style="font-size:12px;font-weight:600;color:#1e3a8a;">Menampilkan semua data yang sudah diproses.</span>
-                <button class="rap-btn rap-btn-success" onclick="kirimKeBankDataPenjualan()" style="margin-left:auto;">📤 Kirim ke Bank Data Penjualan</button>
-            </div>
-
-            <input type="text" class="search-box" id="searchResult" placeholder="🔍 Cari di hasil…" oninput="filterResult()" />
-
-            <div class="data-table-rap-container">
-                <table class="data-table" id="resultTable">
-                    <thead>
-                        <tr>
-                            <th>Tanggal</th>
-                            <th>No.Faktur</th>
-                            <th>Produk</th>
-                            <th>Jumlah</th>
-                            <th>Satuan</th>
-                            <th>Harga Jual</th>
-                            <th>Disc</th>
-                            <th>Total</th>
-                            <th>Sales</th>
-                            <th>Customer</th>
-                            <th>Alamat</th>
-                            <th>Pembayaran</th>
-                            <th>Harga Beli</th>
-                            <th title="Profit = Total − (Harga Beli × Jumlah)">Profit</th>
-                        </tr>
-                    </thead>
-                    <tbody id="resultBody"></tbody>
-                </table>
-            </div>
-
-            <div class="action-buttons" style="margin-top:10px;">
-                <button class="rap-btn rap-btn-primary" onclick="downloadExcel()">📥 Download Data Tampil</button>
-                <button class="rap-btn rap-btn-secondary" onclick="downloadExcelAll()">📥 Download Semua Data</button>
-                <button class="rap-btn rap-btn-secondary" onclick="backToUpload()">🔄 File Lain</button>
-            </div>
-        </div>
-
+  <div class="filter-row">
+    <div class="filter-item">
+      <label for="rapFilterTanggal">(filter tanggal)</label>
+      <select id="rapFilterTanggal"><option value="">Semua tanggal</option></select>
     </div>
+    <div class="filter-item">
+      <label for="rapFilterBulan">(filter bulan)</label>
+      <select id="rapFilterBulan"><option value="">Semua bulan</option></select>
+    </div>
+    <div class="summary" id="rapSummaryText"></div>
+  </div>
 
+  <div id="rapTableArea">
+    <div class="empty-state">Belum ada data. Upload file lalu klik PROSES.</div>
+  </div>
+
+  <div class="result-actions">
+    <button class="btn-download" id="rapDownloadBtn" disabled>📥 Download Hasil Sesuai Filter</button>
+    <button class="btn-kirim" id="rapKirimBtn" disabled>📤 Kirim ke Bank Data Penjualan</button>
+  </div>
+  <div class="kirim-info" id="rapKirimInfo"></div>
+  <div class="status-msg" id="rapKirimStatus"></div>
+
+  <div class="section-divider"></div>
+
+  <h1 class="title">Rapikan Data Harga Beli</h1>
+  <p class="hint-text">Upload sekali untuk memuat semua produk. Setelah itu, kalau cuma ada perubahan harga, cukup klik <b>Edit</b> pada produk yang berubah lalu <b>Save</b> — tidak perlu upload ulang. Data tersimpan otomatis di browser ini.</p>
+
+  <div class="upload-row">
+    <div class="upload-left">
+      <label class="file-btn" for="rapFileInputHB">Upload Data Harga Beli Mentah</label>
+      <input type="file" id="rapFileInputHB" accept=".xls,.xlsx">
+      <span class="file-name" id="rapFileNameHB">Belum ada file dipilih</span>
+    </div>
+    <button class="btn-proses" id="rapProsesBtnHB" disabled>PROSES</button>
+  </div>
+  <div class="status-msg" id="rapStatusMsgHB"></div>
+
+  <div class="filter-row">
+    <p class="section-label" style="margin:0;">Cek Hasil</p>
+    <button class="btn-download" id="rapApplyHBBtn" style="margin-left:auto;" disabled>Masukkan ke Tabel Data Penjualan</button>
+  </div>
+  <div class="status-msg" id="rapApplyStatusMsg"></div>
+
+  <div id="rapHbTableArea">
+    <div class="empty-state">Belum ada data. Upload file daftar harga lalu klik PROSES.</div>
+  </div>
+  <button class="reset-link" id="rapResetHBBtn" style="display:none;">Hapus semua data harga beli tersimpan di browser ini</button>
+
+</div>
+</div>
     <script>
-        // ============================================
-        // SERVICE WORKER (jika ?sw=true)
-        // ============================================
-        if (location.search.includes('sw=true')) {
-            self.addEventListener('install', e => {
-                e.waitUntil(
-                    caches.open('data-penjualan-v1').then(cache => {
-                        return cache.addAll(['/', '?sw=true']);
-                    })
-                );
-                self.skipWaiting();
+        (function(){
+            // ============================================================
+            // BAGIAN 1: Rapikan Data Penjualan
+            // ============================================================
+            const fileInput = document.getElementById('rapFileInput');
+            const fileNameEl = document.getElementById('rapFileName');
+            const prosesBtn = document.getElementById('rapProsesBtn');
+            const statusMsg = document.getElementById('rapStatusMsg');
+            const filterTanggal = document.getElementById('rapFilterTanggal');
+            const filterBulan = document.getElementById('rapFilterBulan');
+            const tableArea = document.getElementById('rapTableArea');
+            const downloadBtn = document.getElementById('rapDownloadBtn');
+            const kirimBtn = document.getElementById('rapKirimBtn');
+            const kirimInfo = document.getElementById('rapKirimInfo');
+            const kirimStatus = document.getElementById('rapKirimStatus');
+            const summaryText = document.getElementById('rapSummaryText');
+
+            let rawFile = null;
+            let cleanRows = [];   // array of row objects
+            const COLS = ["Tanggal","No.Faktur","Produk","Jumlah","Satuan","Harga Jual","Disc","Total","Sales","Customer","Alamat","Pembayaran","Harga Beli"];
+            const NUM_COLS = new Set(["Jumlah","Harga Jual","Disc","Total","Harga Beli"]);
+            const MONTHS_ID = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+
+            fileInput.addEventListener('change', () => {
+                rawFile = fileInput.files[0] || null;
+                fileNameEl.textContent = rawFile ? rawFile.name : 'Belum ada file dipilih';
+                prosesBtn.disabled = !rawFile;
+                setStatus('', '');
             });
-            self.addEventListener('activate', e => {
-                e.waitUntil(clients.claim());
+
+            prosesBtn.addEventListener('click', () => {
+                if(!rawFile) return;
+                setStatus('Memproses file...', '');
+                prosesBtn.disabled = true;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try{
+                        const data = new Uint8Array(e.target.result);
+                        const wb = XLSX.read(data, {type:'array', cellDates:true});
+                        const sheet = wb.Sheets[wb.SheetNames[0]];
+                        const aoa = XLSX.utils.sheet_to_json(sheet, {header:1, raw:true, defval:null});
+                        const rows = cleanData(aoa);
+                        if(rows.length === 0){
+                            setStatus('Tidak ada baris data valid yang ditemukan di file ini. Cek apakah formatnya sama seperti biasanya.', 'err');
+                            prosesBtn.disabled = false;
+                            return;
+                        }
+                        cleanRows = rows;
+                        buildFilters(cleanRows);
+                        renderTable();
+                        setStatus('Berhasil merapikan ' + rows.length + ' baris data.', 'ok');
+                    }catch(err){
+                        console.error(err);
+                        setStatus('Gagal membaca file: ' + err.message, 'err');
+                    }finally{
+                        prosesBtn.disabled = false;
+                    }
+                };
+                reader.onerror = () => {
+                    setStatus('Gagal membaca file.', 'err');
+                    prosesBtn.disabled = false;
+                };
+                reader.readAsArrayBuffer(rawFile);
             });
-            self.addEventListener('fetch', e => {
-                e.respondWith(
-                    caches.match(e.request).then(res => res || fetch(e.request))
-                );
-            });
-        } else {
-            // ============================================
-            // MAIN APP
-            // ============================================
-            (function() {
-                const DEFAULT_HARGA_BELI = {
-                    "NS CRIPSY LEMON": 9124,
-                    "KECAP GUNA JRG": 85500,
-                    "SAMBAL STICK 9 GR": 3240,
-                    "SAMBAL REFFIL 600ML": 39360,
-                    "SAMBAL CABE 500GR": 2811,
-                    "SHZ KIREI 85GR": 4172,
-                    "SHZ CLASIC/MATSU 85GR": 4172,
-                    "KRUPUK B PUTIH PEDAS": 70798,
-                    "BIHUN JAGUNG": 52252,
-                    "SHZ KENSHO 85GR": 4172,
-                    "SOUN BAKSO GAJAH 2 KP": 63738,
-                    "JELLYGAR HEMAT MELON": 17255,
-                    "SHZ MYORI 85GR": 4172,
-                    "SHZ HANA 85GR": 4172,
-                    "KECAP BOTOL NAS 130ML": 4162,
-                    "SAMBAL BOTOL MEJA 130ML": 2622,
-                    "ZEN SULPHUR": 2847,
-                    "ZEN ECHINACEA": 2847,
-                    "ZEN JUNIPERBERRIES": 2792,
-                    "ZEN SANDALWOOD": 2792,
-                    "ZEN SEALSALT": 2847,
-                    "ZEN TEATREE": 2847,
-                    "KECAP NAS REFF 520ML": 13800,
-                    "JELLYGAR STRAWBERRY": 17255,
-                    "JELLYGAR LECI": 17255,
-                    "JELLY ORANGE": 17255,
-                    "JELLYGAR BLUEBERRY": 17500,
-                    "JELLYGAR PLAIN": 16854,
-                    "KERUPUK BWG BIBIR RJW": 65000,
-                    "KERUPUK BWG PUTIH RJW": 65000,
-                    "AGAR LUMBA HEMAT COKLAT": 23275,
-                    "SHZ SAKURA 85GR": 4172,
-                    "AGAR LUMBA SUPER PUTIH": 32119,
-                    "AGAR LUMBA SUPER MERAH": 32119,
-                    "AGAR LUMBA SUPER HIJAU": 32119,
-                    "MIE IKAT KECIL": 19141,
-                    "SHZ REFF MATSU 85ML": 3958,
-                    "SHZ REFF KIREI 85ML": 3958,
-                    "KERUPUK TERASI": 70798,
-                    "KECAP REF 300ML": 5625,
-                    "KECAP JERIGEN 6KG": 99000,
-                    "KECAP GUNA 520 REFF": 9900,
-                    "KECAP PREMIUM 70ML": 1873,
-                    "KECAP CG ASIN BESAR 625ML": 5490,
-                    "SAMBAL GUNA 1 KG": 9450,
-                    "COCOMAXI CAIR 65GR": 4141,
-                    "AGAR LUMBA SUPER COKLAT": 32119,
-                    "AGAR LUMBA HEMAT PUTIH": 23275,
-                    "AGAR LUMBA HEMAT MERAH": 23275,
-                    "AGAR LUMBA HEMAT HIJAU": 23275,
-                    "PUDDING MANGGO": 39900,
-                    "PUDDING VANILA": 39900,
-                    "PUDDING COCOPANDAN": 39900,
-                    "PUDDING MIXBERY": 39900,
-                    "PUDDING CHOCOCREAM": 7703,
-                    "TERASI RENCENG 5GR": 7000,
-                    "MIE 18 KP": 19773,
-                    "BOTOL 600ML": 16200,
-                    "FITRI BOTOL 1800ML": 204300,
-                    "FITRI  BOTOL 400ML": 110000,
-                    "FITRI BOTOL 800ML": 208800,
-                    "FITRI BOTOL 200ML": 110500,
-                    "KERUPUK UDANG RJW": 65000,
-                    "NS CRIPSY CRACKERS": 9012,
-                    "MARGARINE FORVITA": 5301,
-                    "WOSHI2 GREAN TEA 72X75ML": 1535,
-                    "ZEN REFF SANDALWOOD": 4172,
-                    "ZEN REFF JUNIPERBERIS": 4172,
-                    "ZEN REFF SEASALT": 4172,
-                    "ZEN REFF TEATREE": 4172
+
+            function setStatus(msg, cls){
+                statusMsg.textContent = msg;
+                statusMsg.className = 'status-msg' + (cls ? ' ' + cls : '');
+            }
+
+            // ---- Cleaning logic ----
+            function findHeaderRow(aoa){
+                const scanRows = Math.min(30, aoa.length);
+                for(let i=0;i<scanRows;i++){
+                    const row = aoa[i] || [];
+                    for(const v of row){
+                        if(typeof v === 'string' && v.trim().toLowerCase() === 'tanggal') return i;
+                    }
+                }
+                throw new Error("Tidak ketemu baris header (kolom 'Tanggal').");
+            }
+
+            function toDate(v){
+                if(v === null || v === undefined || v === '') return null;
+                if(v instanceof Date && !isNaN(v)) return v;
+                if(typeof v === 'number'){
+                    const d = XLSX.SSF.parse_date_code(v);
+                    if(d) return new Date(d.y, d.m-1, d.d, d.H||0, d.M||0, d.S||0);
+                    return null;
+                }
+                if(typeof v === 'string'){
+                    const d = new Date(v.replace(' ', 'T'));
+                    if(!isNaN(d)) return d;
+                }
+                return null;
+            }
+
+            function cleanData(aoa){
+                const headerIdx = findHeaderRow(aoa);
+                const dataRows = aoa.slice(headerIdx + 1);
+                const out = [];
+                for(const r of dataRows){
+                    if(!r) continue;
+                    const tgl = toDate(r[2]);
+                    if(!tgl) continue; // buang baris kosong, TOTAL, separator, dll
+                    out.push({
+                        Tanggal: tgl,
+                        "No.Faktur": r[3] != null ? String(r[3]) : '',
+                        Produk: r[5] != null ? String(r[5]) : '',
+                        Jumlah: toNum(r[7]),
+                        Satuan: r[8] != null ? String(r[8]) : '',
+                        "Harga Jual": toNum(r[9]),
+                        Disc: toNum(r[10]),
+                        Total: toNum(r[11]),
+                        Sales: r[12] != null ? String(r[12]) : '',
+                        Customer: r[13] != null ? String(r[13]) : '',
+                        Alamat: r[14] != null ? String(r[14]) : '',
+                        Pembayaran: pembayaranFromJwk(r[17]),
+                        "Harga Beli": null
+                    });
+                }
+                return out;
+            }
+
+            function toNum(v){
+                if(v === null || v === undefined || v === '') return null;
+                const n = typeof v === 'number' ? v : parseFloat(String(v).replace(/[^0-9.-]/g,''));
+                return isNaN(n) ? null : n;
+            }
+
+            function pembayaranFromJwk(v){
+                const n = toNum(v);
+                if(n === null) return '';
+                return n === 0 ? 'Cash' : 'Tempo';
+            }
+
+            // ---- Filters ----
+            function pad2(n){ return String(n).padStart(2,'0'); }
+            function dateKey(d){ return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate()); }
+            function monthKey(d){ return d.getFullYear()+'-'+pad2(d.getMonth()+1); }
+            function fmtDateShort(d){ return pad2(d.getDate())+'/'+pad2(d.getMonth()+1)+'/'+String(d.getFullYear()).slice(-2); }
+            function fmtMonthLabel(key){
+                const [y,m] = key.split('-');
+                return MONTHS_ID[parseInt(m,10)-1] + ' ' + y;
+            }
+
+            function buildFilters(rows){
+                const dateSet = new Set();
+                const monthSet = new Set();
+                rows.forEach(r => { dateSet.add(dateKey(r.Tanggal)); monthSet.add(monthKey(r.Tanggal)); });
+
+                const dates = Array.from(dateSet).sort();
+                const months = Array.from(monthSet).sort();
+
+                filterTanggal.innerHTML = '<option value="">Semua tanggal</option>' +
+                    dates.map(k => `<option value="${k}">${fmtDateShort(new Date(k+'T00:00:00'))}</option>`).join('');
+                filterBulan.innerHTML = '<option value="">Semua bulan</option>' +
+                    months.map(k => `<option value="${k}">${fmtMonthLabel(k)}</option>`).join('');
+            }
+
+            filterTanggal.addEventListener('change', renderTable);
+            filterBulan.addEventListener('change', renderTable);
+
+            function currentFilterLabel(){
+                const dSel = filterTanggal.value, mSel = filterBulan.value;
+                if(dSel) return 'Tanggal ' + fmtDateShort(new Date(dSel+'T00:00:00'));
+                if(mSel) return fmtMonthLabel(mSel);
+                return 'SEMUA DATA (belum difilter)';
+            }
+
+            function getFilteredRows(){
+                const dSel = filterTanggal.value;
+                const mSel = filterBulan.value;
+                return cleanRows.filter(r => {
+                    if(dSel && dateKey(r.Tanggal) !== dSel) return false;
+                    if(mSel && monthKey(r.Tanggal) !== mSel) return false;
+                    return true;
+                });
+            }
+
+            function fmtNum(n){
+                if(n === null || n === undefined) return '';
+                return n.toLocaleString('id-ID');
+            }
+
+            function renderTable(){
+                const rows = getFilteredRows();
+                downloadBtn.disabled = rows.length === 0;
+                kirimBtn.disabled = rows.length === 0;
+                summaryText.textContent = rows.length ? (rows.length + ' baris ditemukan') : '';
+                kirimInfo.textContent = rows.length ? ('Siap kirim: ' + rows.length + ' baris — ' + currentFilterLabel()) : '';
+
+                if(rows.length === 0){
+                    tableArea.innerHTML = '<div class="empty-state">Tidak ada data untuk filter ini.</div>';
+                    return;
+                }
+
+                const COL_WIDTHS = {
+                    "Tanggal":6, "No.Faktur":10, "Produk":16, "Jumlah":5, "Satuan":5,
+                    "Harga Jual":8, "Disc":5, "Total":8, "Sales":6, "Customer":9,
+                    "Alamat":7, "Pembayaran":6, "Harga Beli":9
                 };
 
-                let hargaBeli = {};
-                let rawData = [];
-                let processedData = [];
-                let filteredData = [];
-                let currentFilterLabel = '';
-                let fileName = '';
+                let html = '<div class="table-scroll table-scroll-limited table-scroll-limited-main"><table><colgroup>';
+                COLS.forEach(c => { html += `<col style="width:${COL_WIDTHS[c]}%;">`; });
+                html += '</colgroup><thead><tr>';
+                COLS.forEach(c => { html += `<th>${c}</th>`; });
+                html += '</tr></thead><tbody>';
 
-                function loadHargaBeli() {
-                    const saved = localStorage.getItem('hargaBeliData');
-                    if (saved) {
-                        try { hargaBeli = JSON.parse(saved); } catch (_) { hargaBeli = { ...DEFAULT_HARGA_BELI }; }
-                    } else {
-                        hargaBeli = { ...DEFAULT_HARGA_BELI };
-                    }
-                }
-
-                function saveHargaBeli() {
-                    localStorage.setItem('hargaBeliData', JSON.stringify(hargaBeli));
-                }
-
-                function showToast(message, type = 'success') {
-                    const el = document.getElementById('rap-toast');
-                    el.textContent = message;
-                    el.className = 'rap-toast ' + type;
-                    el.classList.add('show');
-                    clearTimeout(el._hideTimer);
-                    el._hideTimer = setTimeout(() => el.classList.remove('show'), 2500);
-                }
-
-                function setProgress(pct) {
-                    document.getElementById('progressFill').style.width = Math.min(100, pct) + '%';
-                }
-
-                function showStatus(msg, type = 'info') {
-                    const bar = document.getElementById('statusBar');
-                    bar.className = 'status-bar ' + type;
-                    bar.textContent = msg;
-                    bar.classList.remove('hidden');
-                }
-
-                function hideStatus() {
-                    document.getElementById('statusBar').classList.add('hidden');
-                }
-
-                function setStep(n) {
-                    for (let i = 1; i <= 3; i++) {
-                        const s = document.getElementById('step' + i);
-                        const l = document.getElementById('line' + i);
-                        s.classList.remove('active', 'completed');
-                        if (l) l.classList.remove('completed');
-                        if (i < n) { s.classList.add('completed'); if (l) l.classList.add('completed'); } else if (i === n) { s
-                                .classList.add('active'); }
-                    }
-                }
-
-                function rapSwitchTab(tabId, e) {
-                    const parent = e ? e.target.closest('.tabs') : document.querySelector('.tabs');
-                    if (parent) {
-                        parent.querySelectorAll('.rap-tab-btn').forEach(b => b.classList.remove('active'));
-                        if (e) e.target.classList.add('active');
-                    }
-                    document.querySelectorAll('.rap-tab-content').forEach(c => c.classList.remove('active'));
-                    document.getElementById(tabId).classList.add('active');
-                }
-
-                // FILE UPLOAD
-                function handleFileSelect(event) {
-                    const file = event.target.files[0];
-                    if (!file) return;
-                    processRawFile(file);
-                }
-
-                document.addEventListener('dragover', (e) => e.preventDefault());
-                document.addEventListener('drop', (e) => {
-                    e.preventDefault();
-                    const files = e.dataTransfer.files;
-                    if (files.length > 0) {
-                        const file = files[0];
-                        if (file && (file.name.endsWith('.xls') || file.name.endsWith('.xlsx'))) {
-                            processRawFile(file);
-                        } else {
-                            showToast('Format harus .xls / .xlsx', 'error');
+                rows.forEach((r, idx) => {
+                    html += '<tr>';
+                    COLS.forEach(c => {
+                        if(c === 'Tanggal'){
+                            html += `<td>${fmtDateShort(r.Tanggal)}</td>`;
+                        }else if(c === 'Pembayaran'){
+                            html += `<td>${escapeHtml(r.Pembayaran)}</td>`;
+                        }else if(c === 'Harga Beli'){
+                            html += `<td class="editable num"><input type="number" placeholder="isi" value="${r['Harga Beli']!=null?r['Harga Beli']:''}" data-idx="${idx}" data-col="Harga Beli" oninput="window.__rapEditCell(this)"></td>`;
+                        }else if(NUM_COLS.has(c)){
+                            html += `<td class="num">${fmtNum(r[c])}</td>`;
+                        }else{
+                            html += `<td>${escapeHtml(r[c])}</td>`;
                         }
-                    }
+                    });
+                    html += '</tr>';
+                });
+                html += '</tbody></table></div>';
+                tableArea.innerHTML = html;
+
+                tableArea.__filteredRows = rows;
+            }
+
+            window.__rapEditCell = function(el){
+                const idx = parseInt(el.getAttribute('data-idx'), 10);
+                const col = el.getAttribute('data-col');
+                const rows = tableArea.__filteredRows;
+                if(!rows || !rows[idx]) return;
+                let val = el.value;
+                if(col === 'Harga Beli'){
+                    val = val === '' ? null : parseFloat(val);
+                }
+                rows[idx][col] = val;
+            };
+
+            function escapeHtml(s){
+                if(s === null || s === undefined) return '';
+                return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+            }
+
+            function normProduk(s){ return String(s).trim().replace(/\s+/g, ' ').toUpperCase(); }
+
+            downloadBtn.addEventListener('click', () => {
+                const rows = getFilteredRows();
+                if(rows.length === 0) return;
+
+                const aoa = [COLS];
+                rows.forEach(r => {
+                    aoa.push(COLS.map(c => c === 'Tanggal' ? r.Tanggal : r[c]));
                 });
 
-                function processRawFile(file) {
-                    fileName = file.name;
-                    document.getElementById('fileName').textContent = file.name;
-                    document.getElementById('fileSize').textContent = (file.size / 1024).toFixed(1) + ' KB';
-                    document.getElementById('fileInfo').classList.remove('hidden');
-
-                    const label = document.getElementById('uploadLabel');
-                    label.textContent = '📎 ' + file.name;
-                    label.classList.add('has-file');
-                    document.getElementById('btnClearFile').style.display = 'inline-flex';
-
-                    setProgress(20);
-                    showStatus('Membaca file…', 'info');
-
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        setProgress(50);
-                        try {
-                            const data = new Uint8Array(e.target.result);
-                            const wb = XLSX.read(data, { type: 'array' });
-                            const sheet = wb.Sheets[wb.SheetNames[0]];
-                            const json = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
-                            setProgress(70);
-                            parseRawData(json);
-                            setProgress(100);
-
-                            showStatus('✅ ' + rawData.length + ' baris data ditemukan.', 'success');
-                            showToast('File berhasil dibaca: ' + rawData.length + ' baris', 'success');
-
-                            setTimeout(() => {
-                                document.getElementById('cardHargaBeli').classList.remove('hidden');
-                                document.getElementById('cardHargaBeli').classList.add('fade-in');
-                                renderHargaBeliTable();
-                                setStep(2);
-                            }, 300);
-
-                        } catch (err) {
-                            showStatus('❌ Error: ' + err.message, 'error');
-                            setProgress(0);
-                        }
-                    };
-                    reader.readAsArrayBuffer(file);
-                }
-
-                function parseRawData(json) {
-                    rawData = [];
-                    for (let i = 7; i < json.length; i++) {
-                        const row = json[i];
-                        if (!row || !row[0]) continue;
-                        const no = parseInt(row[0]);
-                        if (isNaN(no)) continue;
-
-                        let tgl = row[2];
-                        if (tgl) {
-                            if (typeof tgl === 'number') {
-                                const epoch = new Date(1899, 11, 30);
-                                tgl = new Date(epoch.getTime() + tgl * 86400000);
-                            } else if (typeof tgl === 'string') {
-                                tgl = new Date(tgl);
-                            }
-                        }
-
-                        const jwkVal = row[17] !== undefined && row[17] !== null ? String(row[17]).trim() : '';
-
-                        rawData.push({
-                            NO: no,
-                            Tanggal: tgl,
-                            No_Faktur: row[3] ? String(row[3]) : '',
-                            Kode_Produk: row[4] ? String(row[4]) : '',
-                            Produk: row[5] ? String(row[5]).trim() : '',
-                            Jumlah: parseInt(row[7]) || 0,
-                            Satuan: row[8] ? String(row[8]) : '',
-                            Harga_Jual: parseFloat(row[9]) || 0,
-                            Disc: parseInt(row[10]) || 0,
-                            Total: parseFloat(row[11]) || 0,
-                            Sales: row[12] ? String(row[12]) : '',
-                            Customer: row[13] ? String(row[13]) : '',
-                            Alamat: row[14] ? String(row[14]) : '',
-                            Jwk: jwkVal
-                        });
-                    }
-                }
-
-                function clearFile() {
-                    document.getElementById('fileInput').value = '';
-                    document.getElementById('fileInfo').classList.add('hidden');
-                    document.getElementById('cardHargaBeli').classList.add('hidden');
-                    document.getElementById('cardResult').classList.add('hidden');
-                    setProgress(0);
-                    hideStatus();
-                    rawData = [];
-                    processedData = [];
-                    filteredData = [];
-                    setStep(1);
-
-                    document.getElementById('uploadLabel').textContent = 'Belum ada file';
-                    document.getElementById('uploadLabel').classList.remove('has-file');
-                    document.getElementById('btnClearFile').style.display = 'none';
-                    document.getElementById('fileName').textContent = '-';
-                    document.getElementById('fileSize').textContent = '-';
-                }
-
-                // HARGA BELI EDITOR
-                function renderHargaBeliTable() {
-                    const tbody = document.getElementById('hargaBeliBody');
-                    tbody.innerHTML = '';
-
-                    const produkSet = new Set();
-                    rawData.forEach(r => { if (r.Produk) produkSet.add(r.Produk); });
-                    Object.keys(hargaBeli).forEach(p => produkSet.add(p));
-
-                    const sorted = Array.from(produkSet).sort();
-
-                    sorted.forEach((p, idx) => {
-                        const val = hargaBeli[p] || 0;
-                        const tr = document.createElement('tr');
-                        const safe = p.replace(/'/g, "\\'");
-                        tr.innerHTML = `
-                            <td>${idx + 1}</td>
-                            <td>${p}</td>
-                            <td><input type="number" id="hb_input_${idx}" value="${val}" min="0" data-produk="${safe}" /></td>
-                            <td>
-                                <div class="action-cell">
-                                    <button class="rap-btn rap-btn-success rap-btn-xs" onclick="saveHargaBeliRow('${safe}', ${idx})" title="Simpan harga">💾</button>
-                                    <button class="rap-btn rap-btn-danger rap-btn-xs" onclick="deleteProduk('${safe}')" title="Hapus produk">🗑</button>
-                                </div>
-                            </td>
-                        `;
-                        tbody.appendChild(tr);
+                const ws = XLSX.utils.aoa_to_sheet(aoa);
+                const range = XLSX.utils.decode_range(ws['!ref']);
+                for(let R = 1; R <= range.e.r; R++){
+                    const tglCell = ws[XLSX.utils.encode_cell({r:R, c:0})];
+                    if(tglCell) tglCell.z = 'dd/mm/yyyy';
+                    [3,5,6,7,12].forEach(C => {
+                        const cell = ws[XLSX.utils.encode_cell({r:R, c:C})];
+                        if(cell && typeof cell.v === 'number') cell.z = '#,##0';
                     });
                 }
+                ws['!cols'] = [
+                    {wch:12},{wch:18},{wch:22},{wch:8},{wch:8},{wch:11},
+                    {wch:8},{wch:11},{wch:10},{wch:18},{wch:16},{wch:12},{wch:12}
+                ];
 
-                window.saveHargaBeliRow = function(produk, idx) {
-                    const input = document.getElementById('hb_input_' + idx);
-                    if (!input) {
-                        showToast('Input tidak ditemukan', 'error');
-                        return;
-                    }
-                    const val = parseInt(input.value) || 0;
-                    if (val === 0 && !confirm('Harga beli 0? Lanjutkan?')) {
-                        input.value = hargaBeli[produk] || 0;
-                        return;
-                    }
-                    hargaBeli[produk] = val;
-                    saveHargaBeli();
-                    showToast('💾 Harga beli "' + produk + '" disimpan → Rp ' + val.toLocaleString('id-ID'), 'success');
-                    input.style.borderColor = '#28a745';
-                    input.style.background = '#f0fff0';
-                    setTimeout(() => {
-                        input.style.borderColor = '#ced4da';
-                        input.style.background = '';
-                    }, 800);
-                };
+                const wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, 'Data Rapi');
+                const stamp = new Date();
+                const fname = `hasil_rapi_${stamp.getFullYear()}${pad2(stamp.getMonth()+1)}${pad2(stamp.getDate())}.xlsx`;
+                XLSX.writeFile(wb, fname);
+            });
 
-                window.deleteProduk = function(produk) {
-                    if (!confirm('Hapus "' + produk + '" dari daftar?')) return;
-                    delete hargaBeli[produk];
-                    saveHargaBeli();
-                    renderHargaBeliTable();
-                    showToast('🗑 Produk dihapus', 'info');
-                };
-
-                function filterProduk() {
-                    const q = document.getElementById('searchProduk').value.toLowerCase();
-                    document.querySelectorAll('#hargaBeliBody tr').forEach(row => {
-                        const p = row.cells[1].textContent.toLowerCase();
-                        row.style.display = p.includes(q) ? '' : 'none';
-                    });
+            // ================================================================
+            // KIRIM DATA KE DASHBOARD "BANK DATA PENJUALAN" (dashboard-kerja.html)
+            // Dikirim lewat localStorage key 'gm2026_transferBankData'. Ini HANYA
+            // bekerja kalau dashboard-Data.html & dashboard-kerja.html dibuka dari
+            // domain/origin yang SAMA. Kalau dibuka lewat file:// terpisah, gunakan
+            // cara manual: Download Hasil lalu Import di Bank Data Penjualan.
+            // ================================================================
+            kirimBtn.addEventListener('click', () => {
+                const rows = getFilteredRows();
+                if(rows.length === 0){
+                    kirimStatus.textContent = 'Tidak ada data untuk dikirim. Cek filter tanggal/bulan.';
+                    kirimStatus.className = 'status-msg err';
+                    return;
                 }
 
-                function resetHargaBeli() {
-                    if (!confirm('Reset semua harga beli ke default?')) return;
-                    hargaBeli = { ...DEFAULT_HARGA_BELI };
-                    saveHargaBeli();
-                    renderHargaBeliTable();
-                    showToast('Harga beli direset ke default', 'success');
+                const label = currentFilterLabel();
+                const belumDifilter = label.startsWith('SEMUA DATA');
+                if(belumDifilter){
+                    const lanjut = confirm(
+                        '⚠️ Kamu belum menerapkan filter tanggal/bulan.\n\n' +
+                        'Ini akan mengirim SEMUA data (' + rows.length + ' baris) ke Bank Data Penjualan.\n\n' +
+                        'Kalau kamu hanya ingin mengirim data BULAN TERAKHIR yang baru masuk, klik Batal, lalu pilih filter tanggal/bulan dulu di atas sebelum kirim.\n\n' +
+                        'Lanjutkan kirim SEMUA data sekarang?'
+                    );
+                    if(!lanjut) return;
+                } else {
+                    const lanjut = confirm(
+                        'Kirim ' + rows.length + ' baris data (' + label + ') ke Bank Data Penjualan?\n\n' +
+                        'Pastikan filter ini SUDAH SESUAI dengan periode data terbaru yang mau kamu kirim.'
+                    );
+                    if(!lanjut) return;
                 }
 
-                function downloadHargaBeli() {
-                    const rows = [
-                        ['Produk', 'Harga beli']
-                    ];
-                    Object.entries(hargaBeli).sort((a, b) => a[0].localeCompare(b[0])).forEach(([p, h]) => rows.push([p, h]));
-                    const ws = XLSX.utils.aoa_to_sheet(rows);
-                    const wb = XLSX.utils.book_new();
-                    XLSX.utils.book_append_sheet(wb, ws, 'Harga Beli');
-                    const out = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-                    saveAs(new Blob([out], { type: 'application/octet-stream' }), 'daftar_harga_beli.xlsx');
-                    showToast('File harga beli di-download', 'success');
-                }
-
-                // Coba baca format "rapi": header di baris pertama, kolom bernama
-                // Produk / Harga beli persis seperti hasil export aplikasi ini.
-                function parseHargaBeliRapi(sheet) {
-                    const json = XLSX.utils.sheet_to_json(sheet);
-                    const hasil = {};
-                    let count = 0;
-                    json.forEach(row => {
-                        const p = row['Produk'] || row['produk'] || row['Nama Produk'];
-                        const h = row['Harga beli'] || row['Harga Beli'] || row['harga beli'] || row[
-                            'harga_beli'];
-                        if (p && h) {
-                            hasil[String(p).trim()] = parseInt(h) || 0;
-                            count++;
-                        }
-                    });
-                    return { hasil, count };
-                }
-
-                // Baca format "mentah" ala daftarharga.xls: ada baris judul,
-                // header pakai sel gabungan (mis. 'Produk' & 'Hrg beli'), diikuti
-                // baris data yang diselingi baris kosong. Kolom nama produk &
-                // harga beli dicari dari POSISI kolom data (bukan dari nama header),
-                // karena sel gabungan menggeser posisi header dari posisi data asli.
-                function parseHargaBeliMentah(sheet) {
-                    const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: true, defval: '' });
-                    const hasil = {};
-                    let count = 0;
-                    let headerDitemukan = false;
-
-                    for (const row of rows) {
-                        if (!headerDitemukan) {
-                            if (row.some(v => String(v).trim().toLowerCase() === 'produk')) {
-                                headerDitemukan = true;
-                            }
-                            continue;
-                        }
-                        if (row.length <= 6) continue;
-
-                        const nama = String(row[3] || '').trim();
-                        const harga = row[6];
-
-                        if (!nama) continue;
-                        if (typeof harga !== 'number' || harga === 0) continue;
-
-                        hasil[nama] = Math.round(harga);
-                        count++;
-                    }
-                    return { hasil, count };
-                }
-
-                function handleHargaBeliUpload(event) {
-                    const file = event.target.files[0];
-                    if (!file) return;
-
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        try {
-                            const data = new Uint8Array(e.target.result);
-                            const wb = XLSX.read(data, { type: 'array' });
-                            const sheet = wb.Sheets[wb.SheetNames[0]];
-
-                            // Coba format rapi dulu; kalau tidak ketemu apa-apa,
-                            // otomatis fallback ke pembacaan format mentah.
-                            let { hasil, count } = parseHargaBeliRapi(sheet);
-                            let modeMentah = false;
-                            if (count === 0) {
-                                ({ hasil, count } = parseHargaBeliMentah(sheet));
-                                modeMentah = true;
-                            }
-
-                            if (count === 0) {
-                                showToast('Tidak ada data "Produk" & "Harga beli" yang terbaca dari file ini.', 'error');
-                                return;
-                            }
-
-                            Object.keys(hasil).forEach(p => { hargaBeli[p] = hasil[p]; });
-
-                            saveHargaBeli();
-                            renderHargaBeliTable();
-                            showToast(count + ' harga beli berhasil di-import' +
-                                (modeMentah ? ' (format mentah terdeteksi)' : '') + '!', 'success');
-                            const tabs = document.querySelector('.tabs');
-                            tabs.querySelectorAll('.rap-tab-btn').forEach(b => b.classList.remove('active'));
-                            tabs.querySelector('.rap-tab-btn')?.classList.add('active');
-                            document.querySelectorAll('.rap-tab-content').forEach(c => c.classList.remove('active'));
-                            document.getElementById('tabTabel').classList.add('active');
-
-                        } catch (err) {
-                            showToast('Error: ' + err.message, 'error');
-                        }
-                    };
-                    reader.readAsArrayBuffer(file);
-                }
-
-                // PROCESS DATA
-                function processData() {
-                    if (rawData.length === 0) {
-                        showToast('Belum ada data. Upload file terlebih dahulu.', 'error');
-                        return;
-                    }
-
-                    document.getElementById('loadingOverlay').classList.add('active');
-
-                    setTimeout(() => {
-                        processedData = [];
-
-                        rawData.forEach(row => {
-                            const hb = hargaBeli[row.Produk] || 0;
-                            const profit = row.Total - (hb * row.Jumlah);
-
-                            let tglStr = '';
-                            let tglObj = null;
-                            if (row.Tanggal) {
-                                const d = new Date(row.Tanggal);
-                                if (!isNaN(d.getTime())) {
-                                    d.setHours(0, 0, 0, 0);
-                                    tglObj = d;
-                                    const dd = String(d.getDate()).padStart(2, '0');
-                                    const mm = String(d.getMonth() + 1).padStart(2, '0');
-                                    const yy = String(d.getFullYear()).slice(-2);
-                                    tglStr = dd + '/' + mm + '/' + yy;
-                                }
-                            }
-
-                            let pembayaran = 'Tempo';
-                            const jwkRaw = row.Jwk;
-                            if (jwkRaw !== undefined && jwkRaw !== null && jwkRaw !== '') {
-                                const numVal = parseFloat(jwkRaw);
-                                if (!isNaN(numVal)) {
-                                    pembayaran = (numVal === 0) ? 'Cash' : 'Tempo';
-                                } else {
-                                    const strVal = String(jwkRaw).trim();
-                                    if (strVal === '0' || strVal === '0.0' || strVal === '0,0') {
-                                        pembayaran = 'Cash';
-                                    } else {
-                                        pembayaran = 'Tempo';
-                                    }
-                                }
-                            }
-
-                            processedData.push({
-                                Tanggal: tglStr,
-                                _tglObj: tglObj,
-                                'No.Faktur': row.No_Faktur,
-                                Produk: row.Produk,
-                                Jumlah: row.Jumlah,
-                                Satuan: row.Satuan,
-                                'Harga Jual': row.Harga_Jual,
-                                Disc: row.Disc,
-                                Total: row.Total,
-                                Sales: row.Sales,
-                                Customer: row.Customer,
-                                Alamat: row.Alamat,
-                                Pembayaran: pembayaran,
-                                'Harga Beli': hb,
-                                Profit: profit
-                            });
-                        });
-
-                        populateYearDropdown();
-
-                        filteredData = [...processedData];
-                        currentFilterLabel = 'SEMUA DATA (belum difilter)';
-                        renderResult();
-                        updateKirimBankDataInfo();
-                        document.getElementById('cardResult').classList.remove('hidden');
-                        document.getElementById('cardResult').classList.add('fade-in');
-                        setStep(3);
-
-                        document.getElementById('loadingOverlay').classList.remove('active');
-                        showToast('Data berhasil diproses! ' + processedData.length + ' baris', 'success');
-                    }, 350);
-                }
-
-                function populateYearDropdown() {
-                    const tahunSelect = document.getElementById('filterTahun');
-                    tahunSelect.innerHTML = '<option value="">-- Tahun --</option>';
-                    const tahunSet = new Set();
-                    processedData.forEach(row => {
-                        if (row._tglObj) {
-                            const tahun = row._tglObj.getFullYear();
-                            tahunSet.add(tahun);
-                        }
-                    });
-                    const tahunArr = Array.from(tahunSet).sort((a, b) => b - a);
-                    tahunArr.forEach(th => {
-                        const opt = document.createElement('option');
-                        opt.value = th;
-                        opt.textContent = th;
-                        tahunSelect.appendChild(opt);
-                    });
-                    // Otomatis pilih tahun terbaru supaya "Filter Bulan" langsung bisa dipakai
-                    if (tahunArr.length > 0) {
-                        tahunSelect.value = tahunArr[0];
-                    }
-                }
-
-                // ===== FILTER BULAN (langsung tanpa input date) =====
-                function filterByBulan() {
-                    const bulan = document.getElementById('filterBulan').value;
-                    const tahun = document.getElementById('filterTahun').value;
-                    if (!bulan) {
-                        showToast('Pilih bulan terlebih dahulu', 'error');
-                        return;
-                    }
-
-                    // Kosongkan input date agar tidak terjadi konflik
-                    document.getElementById('filterTglAwal').value = '';
-                    document.getElementById('filterTglAkhir').value = '';
-
-                    const bulanInt = parseInt(bulan);
-                    const tahunInt = tahun ? parseInt(tahun) : null;
-
-                    filteredData = processedData.filter(row => {
-                        if (!row._tglObj) return false;
-                        const d = row._tglObj;
-                        const bulanCocok = (d.getMonth() + 1) === bulanInt;
-                        if (!bulanCocok) return false;
-                        // Kalau tahun tidak dipilih, cocokkan bulan di semua tahun
-                        if (tahunInt !== null && d.getFullYear() !== tahunInt) return false;
-                        return true;
-                    });
-
-                    renderResult();
-                    const labelTahun = tahun ? `/${tahun}` : ' (semua tahun)';
-                    const namaBulan = document.getElementById('filterBulan').selectedOptions[0]?.textContent || bulan;
-                    currentFilterLabel = `Bulan ${namaBulan}${labelTahun}`;
-                    updateKirimBankDataInfo();
-                    showToast(`✅ Menampilkan ${filteredData.length} data bulan ${bulan}${labelTahun}`, 'success');
-                }
-
-                // Auto-filter begitu Bulan atau Tahun diganti, tanpa perlu klik tombol
-                document.getElementById('filterBulan').addEventListener('change', function() {
-                    if (this.value) filterByBulan();
-                });
-                document.getElementById('filterTahun').addEventListener('change', function() {
-                    if (document.getElementById('filterBulan').value) filterByBulan();
-                });
-
-                // Auto-filter begitu tanggal Periode (awal/akhir) diganti, tanpa perlu klik tombol Filter
-                document.getElementById('filterTglAwal').addEventListener('change', function() {
-                    applyFilterPeriode();
-                });
-                document.getElementById('filterTglAkhir').addEventListener('change', function() {
-                    applyFilterPeriode();
-                });
-
-                // ===== FILTER PERIODE (input date) =====
-                function applyFilterPeriode() {
-                    const tglAwal = document.getElementById('filterTglAwal').value;
-                    const tglAkhir = document.getElementById('filterTglAkhir').value;
-
-                    // Reset dropdown bulan
-                    document.getElementById('filterBulan').value = '';
-                    document.getElementById('filterTahun').value = '';
-
-                    if (!tglAwal && !tglAkhir) {
-                        filteredData = [...processedData];
-                        currentFilterLabel = 'SEMUA DATA (belum difilter)';
-                        renderResult();
-                        updateKirimBankDataInfo();
-                        showToast('Filter di-reset (semua data)', 'info');
-                        return;
-                    }
-
-                    let start = tglAwal ? new Date(tglAwal) : null;
-                    let end = tglAkhir ? new Date(tglAkhir) : null;
-                    if (start) start.setHours(0, 0, 0, 0);
-                    if (end) end.setHours(23, 59, 59, 999);
-
-                    filteredData = processedData.filter(row => {
-                        if (!row._tglObj) return false;
-                        const d = new Date(row._tglObj);
-                        d.setHours(0, 0, 0, 0);
-                        const ts = d.getTime();
-                        if (start && ts < start.getTime()) return false;
-                        if (end && ts > end.getTime()) return false;
-                        return true;
-                    });
-
-                    renderResult();
-                    currentFilterLabel = `Periode ${tglAwal || '...'} s.d. ${tglAkhir || '...'}`;
-                    updateKirimBankDataInfo();
-                    const msg = filteredData.length === processedData.length ?
-                        'Filter diterapkan (semua data)' :
-                        `Menampilkan ${filteredData.length} dari ${processedData.length} baris`;
-                    showToast(msg, 'success');
-                }
-
-                function resetFilterPeriode() {
-                    document.getElementById('filterTglAwal').value = '';
-                    document.getElementById('filterTglAkhir').value = '';
-                    document.getElementById('filterBulan').value = '';
-                    document.getElementById('filterTahun').value = '';
-                    filteredData = [...processedData];
-                    currentFilterLabel = 'SEMUA DATA (belum difilter)';
-                    renderResult();
-                    updateKirimBankDataInfo();
-                    showToast('Filter di-reset', 'info');
-                }
-
-                // Update kotak info di atas tabel hasil (dipakai tombol Kirim ke Bank Data Penjualan)
-                function updateKirimBankDataInfo() {
-                    const el = document.getElementById('kirimBankDataInfo');
-                    if (!el) return;
-                    el.textContent = `Siap kirim: ${filteredData.length} baris — ${currentFilterLabel}`;
-                }
-
-                // RENDER RESULT
-                function renderResult() {
-                    const tbody = document.getElementById('resultBody');
-                    tbody.innerHTML = '';
-
-                    if (filteredData.length === 0) {
-                        tbody.innerHTML =
-                            '<tr><td colspan="14" style="text-align:center; padding:12px; color:#999;">Tidak ada data untuk periode ini</td></tr>';
-                        return;
-                    }
-
-                    filteredData.forEach(r => {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
-                            <td class="date">${r.Tanggal}</td>
-                            <td>${r['No.Faktur']}</td>
-                            <td>${r.Produk}</td>
-                            <td class="number">${r.Jumlah}</td>
-                            <td>${r.Satuan}</td>
-                            <td class="number">${r['Harga Jual'].toLocaleString('id-ID')}</td>
-                            <td class="number">${r.Disc}</td>
-                            <td class="number">${r.Total.toLocaleString('id-ID')}</td>
-                            <td>${r.Sales}</td>
-                            <td>${r.Customer}</td>
-                            <td>${r.Alamat}</td>
-                            <td>${r.Pembayaran}</td>
-                            <td class="number">${r['Harga Beli'].toLocaleString('id-ID')}</td>
-                            <td class="number">${r.Profit.toLocaleString('id-ID')}</td>
-                        `;
-                        tbody.appendChild(tr);
-                    });
-                }
-
-                function filterResult() {
-                    const q = document.getElementById('searchResult').value.toLowerCase();
-                    document.querySelectorAll('#resultBody tr').forEach(row => {
-                        if (row.cells.length === 1 && row.cells[0].colSpan) return;
-                        row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
-                    });
-                }
-
-                // ================================================================
-                // KIRIM DATA KE DASHBOARD "BANK DATA PENJUALAN" (dashboard-kerja.html)
-                // Dikirim lewat localStorage key 'gm2026_transferBankData'. Ini HANYA
-                // bekerja kalau dashboard-Data.html & dashboard-kerja.html dibuka dari
-                // domain/origin yang SAMA (mis. sama-sama di-hosting di GitHub Pages
-                // yang sama). Kalau dibuka lewat file:// terpisah, gunakan cara manual:
-                // Download Data Tampil/Semua Data lalu Import di Bank Data Penjualan.
-                // ================================================================
-                window.kirimKeBankDataPenjualan = function() {
-                    if (filteredData.length === 0) {
-                        showToast('Tidak ada data untuk dikirim. Cek filter Periode/Bulan.', 'error');
-                        return;
-                    }
-
-                    const belumDifilter = currentFilterLabel.startsWith('SEMUA DATA');
-                    if (belumDifilter) {
-                        const lanjut = confirm(
-                            '⚠️ Kamu belum menerapkan filter Periode/Bulan.\n\n' +
-                            'Ini akan mengirim SEMUA data (' + filteredData.length + ' baris) ke Bank Data Penjualan.\n\n' +
-                            'Kalau kamu hanya ingin mengirim data BULAN TERAKHIR yang baru masuk, klik Batal, lalu pilih Bulan & Tahun dulu di atas sebelum kirim.\n\n' +
-                            'Lanjutkan kirim SEMUA data sekarang?'
-                        );
-                        if (!lanjut) return;
-                    } else {
-                        const lanjut = confirm(
-                            'Kirim ' + filteredData.length + ' baris data (' + currentFilterLabel + ') ke Bank Data Penjualan?\n\n' +
-                            'Pastikan filter Periode/Bulan/Tahun ini SUDAH SESUAI dengan periode data terbaru yang mau kamu kirim.'
-                        );
-                        if (!lanjut) return;
-                    }
-
-                    const items = filteredData.map(r => {
-                        let tanggalISO = '';
-                        if (r._tglObj) {
-                            const d = r._tglObj;
-                            tanggalISO = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' +
-                                String(d.getDate()).padStart(2, '0');
-                        }
-                        return {
-                            'Tanggal': tanggalISO,
-                            'No.Faktur': r['No.Faktur'],
-                            'Produk': r.Produk,
-                            'Jumlah': r.Jumlah,
-                            'Satuan': r.Satuan,
-                            'Harga Jual': r['Harga Jual'],
-                            'Disc': r.Disc,
-                            'Total': r.Total,
-                            'Sales': r.Sales,
-                            'Customer': r.Customer,
-                            'Alamat': r.Alamat,
-                            'Pembayaran': r.Pembayaran,
-                            'Harga Beli': r['Harga Beli'],
-                            'Profit': r.Profit
-                        };
-                    });
-
-                    const payload = {
-                        items: items,
-                        meta: { count: items.length, label: currentFilterLabel, waktu: new Date().toISOString() }
-                    };
-
-                    try {
-                        localStorage.setItem('gm2026_transferBankData', JSON.stringify(payload));
-                        showToast('📤 ' + items.length + ' baris siap dikirim (' + currentFilterLabel +
-                            '). Buka dashboard "Bank Data Penjualan" untuk melanjutkan import.', 'success');
-                    } catch (e) {
-                        showToast('❌ Gagal mengirim data: ' + e.message, 'error');
-                    }
-                }
-
-                // ===== DOWNLOAD EXCEL =====
-                function downloadExcel() {
-                    downloadData(filteredData);
-                }
-
-                function downloadExcelAll() {
-                    downloadData(processedData);
-                }
-
-                function downloadData(dataToExport) {
-                    if (dataToExport.length === 0) {
-                        showToast('Tidak ada data untuk di-download', 'error');
-                        return;
-                    }
-
-                    const data = dataToExport.map(r => ({
-                        'Tanggal': r.Tanggal,
+                const items = rows.map(r => {
+                    const d = r.Tanggal;
+                    const tanggalISO = d.getFullYear() + '-' + pad2(d.getMonth()+1) + '-' + pad2(d.getDate());
+                    const hb = r['Harga Beli'];
+                    const profit = (hb === null || hb === undefined || hb === '') ? '' : (r.Total - (hb * r.Jumlah));
+                    return {
+                        'Tanggal': tanggalISO,
                         'No.Faktur': r['No.Faktur'],
                         'Produk': r.Produk,
                         'Jumlah': r.Jumlah,
@@ -5420,62 +4188,262 @@
                         'Customer': r.Customer,
                         'Alamat': r.Alamat,
                         'Pembayaran': r.Pembayaran,
-                        'Harga Beli': r['Harga Beli'],
-                        'Profit': r.Profit
-                    }));
+                        'Harga Beli': hb,
+                        'Profit': profit
+                    };
+                });
 
-                    const ws = XLSX.utils.json_to_sheet(data);
-                    ws['!cols'] = [
-                        { wch: 12 }, { wch: 18 }, { wch: 28 }, { wch: 8 }, { wch: 8 },
-                        { wch: 12 }, { wch: 8 }, { wch: 14 }, { wch: 8 }, { wch: 22 },
-                        { wch: 20 }, { wch: 12 }, { wch: 12 }, { wch: 12 }
-                    ];
+                const payload = {
+                    items: items,
+                    meta: { count: items.length, label: label, waktu: new Date().toISOString() }
+                };
 
-                    const wb = XLSX.utils.book_new();
-                    XLSX.utils.book_append_sheet(wb, ws, 'Data Penjualan');
-                    const out = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-                    const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-                    const suffix = (dataToExport === filteredData) ? 'tampil' : 'semua';
-                    saveAs(new Blob([out], { type: 'application/octet-stream' }),
-                        `Data_Penjualan_${suffix}_${dateStr}.xlsx`);
-                    showToast(`Berhasil download ${dataToExport.length} baris`, 'success');
+                try{
+                    localStorage.setItem('gm2026_transferBankData', JSON.stringify(payload));
+                    kirimStatus.textContent = '📤 ' + items.length + ' baris siap dikirim (' + label + '). Buka dashboard "Bank Data Penjualan" untuk melanjutkan import.';
+                    kirimStatus.className = 'status-msg ok';
+                }catch(err){
+                    kirimStatus.textContent = '❌ Gagal mengirim data: ' + err.message;
+                    kirimStatus.className = 'status-msg err';
                 }
+            });
 
-                function backToUpload() {
-                    document.getElementById('cardResult').classList.add('hidden');
-                    document.getElementById('cardHargaBeli').classList.add('hidden');
-                    setStep(1);
-                    document.getElementById('cardUpload').scrollIntoView({ behavior: 'smooth' });
+            // Dipanggil dari bagian "Rapikan Data Harga Beli" untuk mengisi kolom
+            // Harga Beli di data penjualan, dicocokkan berdasarkan nama Produk.
+            window.__rapApplyHargaBeliToSales = function(priceMap){
+                if(cleanRows.length === 0) return null;
+                let matched = 0;
+                const unmatched = new Set();
+                cleanRows.forEach(r => {
+                    const key = normProduk(r.Produk);
+                    if(Object.prototype.hasOwnProperty.call(priceMap, key)){
+                        r['Harga Beli'] = priceMap[key];
+                        matched++;
+                    } else {
+                        unmatched.add(r.Produk);
+                    }
+                });
+                renderTable();
+                return { matched, total: cleanRows.length, unmatched: Array.from(unmatched) };
+            };
+
+            // ============================================================
+            // BAGIAN 2: Rapikan Data Harga Beli
+            // ============================================================
+            const fileInputHB = document.getElementById('rapFileInputHB');
+            const fileNameHBEl = document.getElementById('rapFileNameHB');
+            const prosesBtnHB = document.getElementById('rapProsesBtnHB');
+            const statusMsgHB = document.getElementById('rapStatusMsgHB');
+            const hbTableArea = document.getElementById('rapHbTableArea');
+            const applyHBBtn = document.getElementById('rapApplyHBBtn');
+            const applyStatusMsg = document.getElementById('rapApplyStatusMsg');
+            const resetHBBtn = document.getElementById('rapResetHBBtn');
+
+            const HB_STORAGE_KEY = 'daftar_harga_beli';
+            const HB_STORAGE_KEY_LAMA = 'hargaBeliData'; // format lama: { "NAMA PRODUK": harga }
+            let rawFileHB = null;
+            let priceRows = [];      // [{Produk, HargaBeli, editing}]
+
+            // Muat data harga beli tersimpan sebelumnya. Kalau format baru belum
+            // ada tapi ada data lama (dari tab Rapikan versi sebelumnya), migrasikan
+            // otomatis supaya data harga beli yang sudah diinput tidak hilang.
+            (function loadSavedPriceRows(){
+                try{
+                    const raw = localStorage.getItem(HB_STORAGE_KEY);
+                    if(raw){
+                        const saved = JSON.parse(raw);
+                        if(Array.isArray(saved) && saved.length){
+                            priceRows = saved.map(r => ({ ...r, editing: false }));
+                        }
+                    } else {
+                        const rawLama = localStorage.getItem(HB_STORAGE_KEY_LAMA);
+                        if(rawLama){
+                            const mapLama = JSON.parse(rawLama);
+                            priceRows = Object.keys(mapLama).map(nama => ({ Produk: nama, HargaBeli: mapLama[nama], editing: false }));
+                            savePriceRows();
+                        }
+                    }
+                    if(priceRows.length){
+                        renderHBTable();
+                        applyHBBtn.disabled = false;
+                        resetHBBtn.style.display = 'inline-block';
+                        setStatusHB('Memuat ' + priceRows.length + ' produk yang sudah tersimpan sebelumnya.', 'ok');
+                    }
+                }catch(err){
+                    console.warn('Gagal memuat data harga beli tersimpan:', err);
                 }
-
-                // ============================================
-                // INIT
-                // ============================================
-                loadHargaBeli();
-
-                window.handleFileSelect = handleFileSelect;
-                window.clearFile = clearFile;
-                window.rapSwitchTab = rapSwitchTab;
-                window.filterProduk = filterProduk;
-                window.resetHargaBeli = resetHargaBeli;
-                window.downloadHargaBeli = downloadHargaBeli;
-                window.handleHargaBeliUpload = handleHargaBeliUpload;
-                window.processData = processData;
-                window.applyFilterPeriode = applyFilterPeriode;
-                window.filterByBulan = filterByBulan;
-                window.resetFilterPeriode = resetFilterPeriode;
-                window.filterResult = filterResult;
-                window.downloadExcel = downloadExcel;
-                window.downloadExcelAll = downloadExcelAll;
-                window.backToUpload = backToUpload;
-
-                console.log('📊 Merapihkan Data Penjualan siap (filter bulan diperbaiki)');
             })();
-        }
+
+            function savePriceRows(){
+                try{
+                    const toSave = priceRows.map(({Produk, HargaBeli}) => ({Produk, HargaBeli}));
+                    localStorage.setItem(HB_STORAGE_KEY, JSON.stringify(toSave));
+                }catch(err){
+                    console.error('Gagal menyimpan data harga beli:', err);
+                }
+            }
+
+            function mergePriceLists(oldRows, freshRows){
+                const map = new Map();
+                oldRows.forEach(r => map.set(normProduk(r.Produk), { Produk: r.Produk, HargaBeli: r.HargaBeli, editing: false }));
+                freshRows.forEach(r => map.set(normProduk(r.Produk), { Produk: r.Produk, HargaBeli: r.HargaBeli, editing: false }));
+                return Array.from(map.values());
+            }
+
+            fileInputHB.addEventListener('change', () => {
+                rawFileHB = fileInputHB.files[0] || null;
+                fileNameHBEl.textContent = rawFileHB ? rawFileHB.name : 'Belum ada file dipilih';
+                prosesBtnHB.disabled = !rawFileHB;
+                setStatusHB('', '');
+            });
+
+            prosesBtnHB.addEventListener('click', () => {
+                if(!rawFileHB) return;
+                setStatusHB('Memproses file...', '');
+                prosesBtnHB.disabled = true;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try{
+                        const data = new Uint8Array(e.target.result);
+                        const wb = XLSX.read(data, {type:'array', cellDates:true});
+                        const sheet = wb.Sheets[wb.SheetNames[0]];
+                        const aoa = XLSX.utils.sheet_to_json(sheet, {header:1, raw:true, defval:null});
+                        const rows = cleanPriceList(aoa);
+                        if(rows.length === 0){
+                            setStatusHB('Tidak ada baris produk & harga beli yang valid ditemukan di file ini.', 'err');
+                            prosesBtnHB.disabled = false;
+                            return;
+                        }
+                        priceRows = mergePriceLists(priceRows, rows);
+                        renderHBTable();
+                        applyHBBtn.disabled = false;
+                        resetHBBtn.style.display = 'inline-block';
+                        savePriceRows();
+                        setStatusHB('Berhasil merapikan & menyimpan ' + priceRows.length + ' produk.', 'ok');
+                    }catch(err){
+                        console.error(err);
+                        setStatusHB('Gagal membaca file: ' + err.message, 'err');
+                    }finally{
+                        prosesBtnHB.disabled = false;
+                    }
+                };
+                reader.onerror = () => {
+                    setStatusHB('Gagal membaca file.', 'err');
+                    prosesBtnHB.disabled = false;
+                };
+                reader.readAsArrayBuffer(rawFileHB);
+            });
+
+            function setStatusHB(msg, cls){
+                statusMsgHB.textContent = msg;
+                statusMsgHB.className = 'status-msg' + (cls ? ' ' + cls : '');
+            }
+
+            // Format sumber: "LAPORAN DAFTAR HARGA" - baris header berisi sel "Hrg beli".
+            // Nama produk ada di kolom index 3, harga beli di kolom index 6.
+            function findHBHeaderRow(aoa){
+                const scanRows = Math.min(30, aoa.length);
+                for(let i=0;i<scanRows;i++){
+                    const row = aoa[i] || [];
+                    for(const v of row){
+                        if(typeof v === 'string' && v.trim().toLowerCase() === 'hrg beli') return i;
+                    }
+                }
+                throw new Error("Tidak ketemu baris header (kolom 'Hrg beli'). Format file mungkin beda dari biasanya.");
+            }
+
+            function cleanPriceList(aoa){
+                const headerIdx = findHBHeaderRow(aoa);
+                const dataRows = aoa.slice(headerIdx + 1);
+                const seen = new Set();
+                const out = [];
+                for(const r of dataRows){
+                    if(!r) continue;
+                    const produk = r[3];
+                    const hargaBeliRaw = r[6];
+                    if(typeof produk !== 'string' || produk.trim() === '') continue;
+                    const hb = typeof hargaBeliRaw === 'number' ? hargaBeliRaw : toNum(hargaBeliRaw);
+                    if(hb === null) continue;
+                    const name = produk.trim().replace(/\s+/g, ' ');
+                    const key = name.toUpperCase();
+                    if(seen.has(key)) continue;
+                    seen.add(key);
+                    out.push({ Produk: name, HargaBeli: hb, editing: false });
+                }
+                return out;
+            }
+
+            function renderHBTable(){
+                if(priceRows.length === 0){
+                    hbTableArea.innerHTML = '<div class="empty-state">Belum ada data. Upload file daftar harga lalu klik PROSES.</div>';
+                    return;
+                }
+                let html = '<div class="table-scroll table-scroll-limited"><table><thead><tr>' +
+                    '<th>Produk</th><th>Harga Beli</th><th style="width:70px;">Edit</th><th style="width:70px;">Save</th>' +
+                    '</tr></thead><tbody>';
+                priceRows.forEach((r, idx) => {
+                    html += '<tr>';
+                    html += `<td>${escapeHtml(r.Produk)}</td>`;
+                    if(r.editing){
+                        html += `<td class="num"><input type="number" id="rapHbInput_${idx}" value="${r.HargaBeli}" style="width:100%;text-align:right;border:1px solid var(--rap-gray-line);padding:3px 4px;"></td>`;
+                        html += `<td></td>`;
+                        html += `<td><button class="link-btn" onclick="window.__rapSaveHB(${idx})">Save</button></td>`;
+                    }else{
+                        html += `<td class="num">${fmtNum(r.HargaBeli)}</td>`;
+                        html += `<td><button class="link-btn" onclick="window.__rapEditHB(${idx})">Edit</button></td>`;
+                        html += `<td></td>`;
+                    }
+                    html += '</tr>';
+                });
+                html += '</tbody></table></div>';
+                hbTableArea.innerHTML = html;
+            }
+
+            window.__rapEditHB = function(idx){
+                priceRows[idx].editing = true;
+                renderHBTable();
+            };
+            window.__rapSaveHB = function(idx){
+                const input = document.getElementById('rapHbInput_' + idx);
+                const val = parseFloat(input.value);
+                if(!isNaN(val)) priceRows[idx].HargaBeli = val;
+                priceRows[idx].editing = false;
+                renderHBTable();
+                savePriceRows();
+                setStatusHB(`Harga "${priceRows[idx].Produk}" tersimpan.`, 'ok');
+            };
+
+            resetHBBtn.addEventListener('click', () => {
+                if(!confirm('Hapus semua data harga beli yang tersimpan di browser ini?')) return;
+                try{
+                    localStorage.removeItem(HB_STORAGE_KEY);
+                    localStorage.removeItem(HB_STORAGE_KEY_LAMA);
+                }catch(err){ /* abaikan */ }
+                priceRows = [];
+                renderHBTable();
+                applyHBBtn.disabled = true;
+                resetHBBtn.style.display = 'none';
+                setStatusHB('Data harga beli tersimpan sudah dihapus.', 'ok');
+            });
+
+            applyHBBtn.addEventListener('click', () => {
+                const priceMap = {};
+                priceRows.forEach(r => { priceMap[normProduk(r.Produk)] = r.HargaBeli; });
+                const result = window.__rapApplyHargaBeliToSales(priceMap);
+                if(result === null){
+                    applyStatusMsg.textContent = 'Proses dulu data penjualan di bagian atas sebelum memasukkan harga beli.';
+                    applyStatusMsg.className = 'status-msg err';
+                    return;
+                }
+                applyStatusMsg.textContent = `Berhasil mengisi Harga Beli untuk ${result.matched} dari ${result.total} baris data penjualan.` +
+                    (result.unmatched.length ? ` Produk tidak ketemu: ${result.unmatched.slice(0,5).join(', ')}${result.unmatched.length>5?', ...':''}` : '');
+                applyStatusMsg.className = 'status-msg ' + (result.unmatched.length ? 'err' : 'ok');
+            });
+
+            console.log('📊 Rapikan Data (versi baru, praktis) siap.');
+        })();
     </script>
 </div>
-
-    </div>
 
     <div class="tab-content" id="tab9">
         <div class="cards" id="rpCards">
@@ -11620,4 +10588,12 @@
             <h2 id="authTitle" style="margin:0 0 6px; color:#1f4e78; font-size:20px;">🔒 Masuk ke GAJAH MAS 2026</h2>
             <p style="margin:0 0 18px; color:#555; font-size:13px;">Login diperlukan supaya data hanya bisa diakses oleh tim kamu.</p>
             <label style="display:block; font-size:13px; margin-bottom:4px; color:#333;">Username</label>
-            <input id="authUsername" type="text" autocomplete="username" required style="width:100%; padding:10px; margin-bottom:12px; border:1px solid #ccc; border-radius:6px; font-size:14px; box-sizi
+            <input id="authUsername" type="text" autocomplete="username" required style="width:100%; padding:10px; margin-bottom:12px; border:1px solid #ccc; border-radius:6px; font-size:14px; box-sizing:border-box;">
+            <label style="display:block; font-size:13px; margin-bottom:4px; color:#333;">Password</label>
+            <input id="authPassword" type="password" autocomplete="current-password" required minlength="6" style="width:100%; padding:10px; margin-bottom:16px; border:1px solid #ccc; border-radius:6px; font-size:14px; box-sizing:border-box;">
+            <button id="authSubmitBtn" type="submit" style="width:100%; padding:11px; background:#1f4e78; color:#fff; border:none; border-radius:6px; font-size:14px; font-weight:600; cursor:pointer;">Masuk</button>
+            <div id="authMsg" style="margin-top:12px; font-size:13px; min-height:16px;"></div>
+        </form>
+    </div>
+
+</body></html>
